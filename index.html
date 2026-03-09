@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opervio Solutions | Soluções digitais sob medida</title>
+  <meta name="description" content="Opervio Solutions — criação de landing pages, sites institucionais e softwares sob medida para transformar processos em resultados." />
+  <meta name="theme-color" content="#08111f" />
+  <link rel="icon" type="image/png" href="assets/icone-opervio.png" />
+  <link rel="apple-touch-icon" href="assets/icone-opervio.png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap');
+
+    :root {
+      --bg: #08111f;
+      --bg-soft: #0f1c30;
+      --card: rgba(255,255,255,0.06);
+      --line: rgba(255,255,255,0.1);
+      --text: #f4f7fb;
+      --muted: #b7c3d4;
+      --primary: #2f80ed;
+      --primary-2: #5aa0ff;
+      --white: #ffffff;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(47,128,237,0.20), transparent 30%),
+        radial-gradient(circle at top right, rgba(90,160,255,0.14), transparent 22%),
+        linear-gradient(180deg, #08111f 0%, #0a1424 100%);
+      color: var(--text);
+    }
+
+    h1, h2, h3, .btn, .brand {
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(8, 17, 31, 0.76);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 78px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-logo img {
+      height: 46px;
+      width: auto;
+      display: block;
+    }
+
+    .brand-copy {
+      display: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      box-shadow: 0 16px 36px rgba(47,128,237,0.35);
+    }
+
+    .btn-secondary {
+      border-color: rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 96px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #dbe9ff;
+      background: rgba(47,128,237,0.14);
+      border: 1px solid rgba(90,160,255,0.2);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(40px, 6vw, 66px);
+      line-height: 1.03;
+      letter-spacing: -1.8px;
+      max-width: 920px;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .hero-highlights span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #d8e2f1;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -60px;
+      top: -50px;
+      background: radial-gradient(circle, rgba(47,128,237,0.32), transparent 65%);
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-visual img {
+      width: min(100%, 280px);
+      height: auto;
+      display: block;
+      border-radius: 28px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .section {
+      padding: 40px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -1px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: rgba(47,128,237,0.14);
+      border: 1px solid rgba(90,160,255,0.16);
+      font-size: 22px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .about-panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-panel ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .about-panel li {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .cta {
+      padding: 40px 0 94px;
+    }
+
+    .cta-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      padding: 34px;
+      background: linear-gradient(135deg, rgba(47,128,237,0.18), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      right: -120px;
+      bottom: -140px;
+      background: radial-gradient(circle, rgba(255,255,255,0.14), transparent 60%);
+    }
+
+    .cta-box h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -1px;
+    }
+
+    .cta-box p {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-copy {
+      display: grid;
+      gap: 18px;
+    }
+
+    .contact-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: var(--shadow);
+    }
+
+    .input-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .contact-form label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(8,17,31,0.56);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(255,255,255,0.48);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: rgba(90,160,255,0.6);
+      box-shadow: 0 0 0 3px rgba(47,128,237,0.14);
+    }
+
+    .contact-form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .contact-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: #99a7bb;
+      padding: 24px 0 34px;
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about,
+      .cards,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero { padding-top: 54px; }
+      h1 { letter-spacing: -1.2px; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .hero-actions,
+      .cta-actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#inicio" class="brand" aria-label="Opervio Solutions">
+        <div class="brand-logo">
+          <img src="assets/logo-opervio.png" alt="Opervio Solutions" />
+        </div>
+        <div class="brand-copy">Opervio Solutions</div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#solucoes">Soluções</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+        <a class="btn btn-primary" href="#contato">Falar com a Opervio</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Opervio Solutions</span>
+          <h1>Soluções digitais sob medida para empresas que precisam de clareza, agilidade e resultado.</h1>
+          <p>
+            A Opervio desenvolve landing pages, sites institucionais e softwares sob medida com foco em organização, presença digital e produtividade. Transformamos necessidades reais em soluções simples, modernas e funcionais.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contato">Entrar em contato</a>
+            <a class="btn btn-secondary" href="#solucoes">Conhecer soluções</a>
+          </div>
+
+          <div class="hero-highlights">
+            <span>Landing pages</span>
+            <span>Sites institucionais</span>
+            <span>Software sob medida</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-visual">
+            <img src="assets/icone-opervio.png" alt="Ícone da Opervio" />
+          </div>
+          <div class="eyebrow">Presença digital profissional</div>
+          <h3 style="margin:0 0 10px; font-size:28px; position:relative; z-index:1;">Uma marca criada para crescer com a empresa.</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.75; position:relative; z-index:1;">
+            A Opervio nasce com uma base visual sólida: identidade própria, comunicação objetiva e estrutura pronta para evoluir para portfólio, produtos e novas páginas institucionais.
+          </p>
+
+          <div class="stat-grid">
+            <div class="stat">
+              <strong>1 página</strong>
+              Presença digital direta e elegante
+            </div>
+            <div class="stat">
+              <strong>100% online</strong>
+              Publicação simples e gratuita
+            </div>
+            <div class="stat">
+              <strong>Leve</strong>
+              Rápido para abrir em qualquer dispositivo
+            </div>
+            <div class="stat">
+              <strong>Escalável</strong>
+              Pronto para evoluir com a empresa
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="solucoes">
+      <div class="container">
+        <div class="section-head">
+          <h2>O que a Opervio pode entregar</h2>
+          <p>
+            A proposta da Opervio é desenvolver soluções digitais com aplicação prática, boa apresentação e foco em eficiência. Esta página é a base institucional da marca e também o ponto de partida para futuros produtos e serviços.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">🌐</div>
+            <h3>Landing pages e sites leves</h3>
+            <p>
+              Criação de landing pages para profissionais autônomos e sites institucionais para pequenas empresas que precisam se apresentar com clareza e profissionalismo.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">⚙️</div>
+            <h3>Sistemas sob medida</h3>
+            <p>
+              Desenvolvimento de ferramentas personalizadas para rotinas, cadastros, checklists, relatórios, controle interno e processos específicos.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">📈</div>
+            <h3>Produtos digitais</h3>
+            <p>
+              Estrutura preparada para lançamento de soluções próprias, páginas de produto e projetos com identidade visual alinhada à marca.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sobre">
+      <div class="container about">
+        <div class="about-panel">
+          <div class="section-head" style="margin-bottom:0;">
+            <h2>Tecnologia aplicada ao que realmente importa</h2>
+            <p>
+              A Opervio foi pensada para atender empresas e profissionais que precisam de soluções claras, funcionais e com apresentação profissional. O objetivo é unir tecnologia, simplicidade e valor prático em cada entrega.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-panel">
+          <ul>
+            <li><strong style="color:var(--text);">Clareza:</strong> comunicação objetiva, proposta direta e soluções que o cliente entende com facilidade.</li>
+            <li><strong style="color:var(--text);">Eficiência:</strong> desenvolvimento voltado para simplificar processos, reduzir retrabalho e aumentar produtividade.</li>
+            <li><strong style="color:var(--text);">Evolução:</strong> base construída para crescer com a empresa, incorporando novos serviços, páginas e produtos digitais.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contato">
+      <div class="container">
+        <div class="cta-box">
+          <div class="contact-grid">
+            <div class="contact-copy">
+              <h2>Fale com a Opervio</h2>
+              <p>
+                Se você busca uma landing page profissional, um site para pequena empresa ou uma solução sob medida, envie sua mensagem. Esta seção já funciona como um canal inicial de contato e pode ser evoluída depois para integração completa com formulário profissional.
+              </p>
+
+              <div class="contact-chips">
+                <span class="contact-chip">Atendimento por e-mail</span>
+                <span class="contact-chip">Projetos sob demanda</span>
+                <span class="contact-chip">Publicação em domínio próprio</span>
+              </div>
+
+              <div class="cta-actions">
+                <a class="btn btn-secondary" href="mailto:contato@opervio.com.br">contato@opervio.com.br</a>
+                <a class="btn btn-secondary" href="#inicio">Voltar ao topo</a>
+              </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+              <div class="input-group">
+                <label for="nome">Nome</label>
+                <input id="nome" name="nome" type="text" placeholder="Seu nome" required />
+              </div>
+
+              <div class="input-group">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" required />
+              </div>
+
+              <div class="input-group">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" placeholder="Escreva aqui o que você precisa para seu projeto." required></textarea>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+              <p class="contact-note">Ao enviar, o site abrirá o aplicativo de e-mail padrão do visitante com a mensagem preenchida. Quando você quiser, isso pode ser substituído por um formulário com recebimento automático.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Opervio Solutions. Todos os direitos reservados.</div>
+      <div>Opervio Solutions — presença digital e software com clareza, estrutura e propósito.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const contactForm = document.getElementById('contactForm');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const nome = document.getElementById('nome').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const mensagem = document.getElementById('mensagem').value.trim();
+
+        const subject = encodeURIComponent(`Contato pelo site - ${nome}`);
+        const body = encodeURIComponent(`Nome: ${nome}
+E-mail: ${email}
+
+Mensagem:
+${mensagem}`);
+
+        window.location.href = `mailto:contato@opervio.com.br?subject=${subject}&body=${body}`;
+      });
+    }
+  </script>
+</body>
+</html>
