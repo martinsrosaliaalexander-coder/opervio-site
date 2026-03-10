@@ -3,724 +3,352 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Opervio Solutions | Soluções digitais sob medida</title>
-  <meta name="description" content="Opervio Solutions — criação de landing pages, sites institucionais e softwares sob medida para transformar processos em resultados." />
-  <meta name="theme-color" content="#08111f" />
-  <link rel="icon" type="image/png" href="assets/icone-opervio.png" />
-  <link rel="apple-touch-icon" href="assets/icone-opervio.png" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap');
-
-    :root {
-      --bg: #08111f;
-      --bg-soft: #0f1c30;
-      --card: rgba(255,255,255,0.06);
-      --line: rgba(255,255,255,0.1);
-      --text: #f4f7fb;
-      --muted: #b7c3d4;
-      --primary: #2f80ed;
-      --primary-2: #5aa0ff;
-      --white: #ffffff;
-      --shadow: 0 20px 60px rgba(0,0,0,0.35);
-      --radius: 24px;
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(47,128,237,0.20), transparent 30%),
-        radial-gradient(circle at top right, rgba(90,160,255,0.14), transparent 22%),
-        linear-gradient(180deg, #08111f 0%, #0a1424 100%);
-      color: var(--text);
-    }
-
-    h1, h2, h3, .btn, .brand {
-      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .container {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(14px);
-      background: rgba(8, 17, 31, 0.76);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 78px;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-weight: 800;
-      letter-spacing: 0.2px;
-    }
-
-    .brand-logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .brand-logo img {
-      height: 46px;
-      width: auto;
-      display: block;
-    }
-
-    .brand-copy {
-      display: none;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 52px;
-      padding: 0 24px;
-      border-radius: 14px;
-      font-weight: 700;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
-      border: 1px solid transparent;
-      cursor: pointer;
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: white;
-      box-shadow: 0 16px 36px rgba(47,128,237,0.35);
-    }
-
-    .btn-secondary {
-      border-color: rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.02);
-      color: var(--text);
-    }
-
-    .hero {
-      padding: 96px 0 64px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 36px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #dbe9ff;
-      background: rgba(47,128,237,0.14);
-      border: 1px solid rgba(90,160,255,0.2);
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      margin: 0 0 18px;
-      font-size: clamp(40px, 6vw, 66px);
-      line-height: 1.03;
-      letter-spacing: -1.8px;
-      max-width: 920px;
-    }
-
-    .hero p {
-      margin: 0;
-      font-size: 19px;
-      line-height: 1.8;
-      color: var(--muted);
-      max-width: 720px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    .hero-highlights {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .hero-highlights span {
-      display: inline-flex;
-      align-items: center;
-      min-height: 38px;
-      padding: 0 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #d8e2f1;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      border: 1px solid var(--line);
-      border-radius: 32px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      width: 240px;
-      height: 240px;
-      right: -60px;
-      top: -50px;
-      background: radial-gradient(circle, rgba(47,128,237,0.32), transparent 65%);
-    }
-
-    .hero-visual {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 22px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-visual img {
-      width: min(100%, 280px);
-      height: auto;
-      display: block;
-      border-radius: 28px;
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 22px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .stat {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 18px;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 26px;
-      margin-bottom: 6px;
-    }
-
-    .section {
-      padding: 40px 0;
-    }
-
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 24px;
-    }
-
-    .section-head h2 {
-      margin: 0 0 12px;
-      font-size: clamp(28px, 4vw, 42px);
-      letter-spacing: -1px;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 17px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .card-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 16px;
-      background: rgba(47,128,237,0.14);
-      border: 1px solid rgba(90,160,255,0.16);
-      font-size: 22px;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 20px;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .about {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 20px;
-      align-items: stretch;
-    }
-
-    .about-panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-    }
-
-    .about-panel ul {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0 0;
-      display: grid;
-      gap: 14px;
-    }
-
-    .about-panel li {
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .cta {
-      padding: 40px 0 94px;
-    }
-
-    .cta-box {
-      position: relative;
-      overflow: hidden;
-      border-radius: 32px;
-      padding: 34px;
-      background: linear-gradient(135deg, rgba(47,128,237,0.18), rgba(255,255,255,0.06));
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: var(--shadow);
-    }
-
-    .cta-box::after {
-      content: "";
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      right: -120px;
-      bottom: -140px;
-      background: radial-gradient(circle, rgba(255,255,255,0.14), transparent 60%);
-    }
-
-    .cta-box h2 {
-      margin: 0 0 12px;
-      font-size: clamp(28px, 4vw, 42px);
-      letter-spacing: -1px;
-    }
-
-    .cta-box p {
-      margin: 0;
-      max-width: 760px;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 17px;
-    }
-
-    .cta-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 24px;
-      align-items: start;
-      position: relative;
-      z-index: 1;
-    }
-
-    .contact-copy {
-      display: grid;
-      gap: 18px;
-    }
-
-    .contact-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .contact-chip {
-      display: inline-flex;
-      align-items: center;
-      min-height: 40px;
-      padding: 0 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .contact-form {
-      display: grid;
-      gap: 14px;
-      padding: 22px;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: var(--shadow);
-    }
-
-    .input-group {
-      display: grid;
-      gap: 8px;
-    }
-
-    .contact-form label {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(8,17,31,0.56);
-      color: var(--text);
-      border-radius: 14px;
-      padding: 14px 16px;
-      font: inherit;
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder {
-      color: rgba(255,255,255,0.48);
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      border-color: rgba(90,160,255,0.6);
-      box-shadow: 0 0 0 3px rgba(47,128,237,0.14);
-    }
-
-    .contact-form textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-
-    .contact-note {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      color: #99a7bb;
-      padding: 24px 0 34px;
-      font-size: 14px;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .about,
-      .cards,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        display: none;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .hero { padding-top: 54px; }
-      h1 { letter-spacing: -1.2px; }
-      .stat-grid { grid-template-columns: 1fr; }
-      .hero-actions,
-      .cta-actions { flex-direction: column; }
-      .btn { width: 100%; }
-    }
-  </style>
+  <title>Opervio Solutions | Sites, E-mail Profissional e Softwares Sob Medida</title>
+  <meta name="description" content="A Opervio Solutions desenvolve landing pages, e-mails profissionais com domínio próprio e softwares sob medida para empresas e profissionais." />
+  <meta name="theme-color" content="#07152f" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a href="#inicio" class="brand" aria-label="Opervio Solutions">
-        <div class="brand-logo">
-          <img src="assets/logo-opervio.png" alt="Opervio Solutions" />
-        </div>
-        <div class="brand-copy">Opervio Solutions</div>
+  <div class="site-bg"></div>
+  <header class="header" id="topo">
+    <div class="container nav-wrap">
+      <a href="#topo" class="brand" aria-label="Opervio Solutions">
+        <img src="assets/logo-opervio.png" alt="Logo Opervio Solutions" />
       </a>
 
-      <nav class="nav-links">
-        <a href="#solucoes">Soluções</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <a href="#servicos">Serviços</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#processo">Processo</a>
         <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
-        <a class="btn btn-primary" href="#contato">Falar com a Opervio</a>
+        <a class="nav-cta" href="https://wa.me/5561981465900" target="_blank" rel="noopener">Solicitar orçamento</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero" id="inicio">
+    <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Opervio Solutions</span>
-          <h1>Soluções digitais sob medida para empresas que precisam de clareza, agilidade e resultado.</h1>
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Startup de tecnologia • soluções acessíveis • execução sob medida</span>
+          <h1>Soluções digitais modernas para quem precisa vender, organizar e crescer.</h1>
           <p>
-            A Opervio desenvolve landing pages, sites institucionais e softwares sob medida com foco em organização, presença digital e produtividade. Transformamos necessidades reais em soluções simples, modernas e funcionais.
+            A Opervio Solutions cria <strong>landing pages profissionais</strong>, configura <strong>e-mail corporativo com domínio próprio</strong>
+            e desenvolve <strong>softwares personalizados</strong> para empresas e profissionais que trabalham com clientes e precisam de presença digital e eficiência operacional.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contato">Entrar em contato</a>
-            <a class="btn btn-secondary" href="#solucoes">Conhecer soluções</a>
+            <a class="btn btn-primary" href="https://wa.me/5561981465900" target="_blank" rel="noopener">Falar no WhatsApp</a>
+            <a class="btn btn-secondary" href="#portfolio">Ver portfólio</a>
           </div>
 
           <div class="hero-highlights">
-            <span>Landing pages</span>
-            <span>Sites institucionais</span>
-            <span>Software sob medida</span>
+            <div class="mini-card">
+              <strong>Opervio OnePage</strong>
+              <span>Landing page profissional a partir de R$ 650</span>
+            </div>
+            <div class="mini-card">
+              <strong>Presença Digital</strong>
+              <span>Landing page + e-mail corporativo por R$ 850</span>
+            </div>
           </div>
         </div>
 
-        <div class="hero-card">
-          <div class="hero-visual">
-            <img src="assets/icone-opervio.png" alt="Ícone da Opervio" />
-          </div>
-          <div class="eyebrow">Presença digital profissional</div>
-          <h3 style="margin:0 0 10px; font-size:28px; position:relative; z-index:1;">Uma marca criada para crescer com a empresa.</h3>
-          <p style="margin:0; color:var(--muted); line-height:1.75; position:relative; z-index:1;">
-            A Opervio nasce com uma base visual sólida: identidade própria, comunicação objetiva e estrutura pronta para evoluir para portfólio, produtos e novas páginas institucionais.
-          </p>
-
-          <div class="stat-grid">
-            <div class="stat">
-              <strong>1 página</strong>
-              Presença digital direta e elegante
-            </div>
-            <div class="stat">
-              <strong>100% online</strong>
-              Publicação simples e gratuita
-            </div>
-            <div class="stat">
-              <strong>Leve</strong>
-              Rápido para abrir em qualquer dispositivo
-            </div>
-            <div class="stat">
-              <strong>Escalável</strong>
-              Pronto para evoluir com a empresa
+        <div class="hero-visual reveal delay-1">
+          <div class="hero-panel glass">
+            <div class="hero-badge">Pacotes prontos para começar</div>
+            <div class="hero-screen">
+              <div class="screen-topbar">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="screen-content">
+                <div class="screen-left">
+                  <p class="screen-label">Opervio Solutions</p>
+                  <h3>Sua estrutura digital começa aqui.</h3>
+                  <ul>
+                    <li>Landing page profissional</li>
+                    <li>E-mail com domínio próprio</li>
+                    <li>Automação e softwares sob medida</li>
+                  </ul>
+                </div>
+                <div class="screen-right">
+                  <div class="metric-card">
+                    <span>Produto destaque</span>
+                    <strong>Presença Digital</strong>
+                    <small>R$ 850</small>
+                  </div>
+                  <div class="metric-card alt">
+                    <span>Contato oficial</span>
+                    <strong>atendimento@opervio.com.br</strong>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="solucoes">
+    <section class="proof">
+      <div class="container proof-grid">
+        <div class="proof-card glass reveal">
+          <span>Entrega objetiva</span>
+          <strong>Sites e soluções com foco em resultado real</strong>
+        </div>
+        <div class="proof-card glass reveal delay-1">
+          <span>Atendimento direto</span>
+          <strong>Contato rápido pelo WhatsApp e e-mail profissional</strong>
+        </div>
+        <div class="proof-card glass reveal delay-2">
+          <span>Escalável</span>
+          <strong>Do site institucional ao software sob medida</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="services section" id="servicos">
       <div class="container">
-        <div class="section-head">
-          <h2>O que a Opervio pode entregar</h2>
+        <div class="section-head reveal">
+          <span class="eyebrow">Serviços</span>
+          <h2>O que a Opervio pode construir para você</h2>
+          <p>Pacotes claros para presença digital imediata e soluções personalizadas para processos internos e rotinas operacionais.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card glass reveal">
+            <div class="service-top">
+              <span class="service-tag">Produto</span>
+              <h3>Opervio OnePage</h3>
+              <div class="price">R$ 650</div>
+            </div>
+            <p>Landing page profissional para apresentar serviços, reforçar autoridade e facilitar o contato com seus clientes.</p>
+            <ul>
+              <li>Layout moderno e responsivo</li>
+              <li>Integração com WhatsApp e redes sociais</li>
+              <li>Publicação no domínio</li>
+              <li>Otimização para celular</li>
+              <li>Suporte inicial</li>
+            </ul>
+          </article>
+
+          <article class="service-card glass featured reveal delay-1">
+            <div class="ribbon">Mais procurado</div>
+            <div class="service-top">
+              <span class="service-tag">Pacote</span>
+              <h3>Presença Digital</h3>
+              <div class="price">R$ 850</div>
+            </div>
+            <p>Pacote ideal para quem quer entrar no digital com mais credibilidade e estrutura profissional desde o início.</p>
+            <ul>
+              <li>Landing page profissional</li>
+              <li>E-mail corporativo com domínio próprio</li>
+              <li>Configuração de DNS e publicação</li>
+              <li>Integração com WhatsApp e Instagram</li>
+              <li>Suporte inicial de implantação</li>
+            </ul>
+          </article>
+
+          <article class="service-card glass reveal delay-2">
+            <div class="service-top">
+              <span class="service-tag">Sob medida</span>
+              <h3>Softwares e Automação</h3>
+              <div class="price small">Projeto personalizado</div>
+            </div>
+            <p>Soluções para automatizar tarefas, organizar dados e transformar rotinas manuais em processos mais eficientes.</p>
+            <ul>
+              <li>Bancos de dados e cadastros</li>
+              <li>Análise e organização de dados</li>
+              <li>Ferramentas de orçamento e relatórios</li>
+              <li>Automação de tarefas operacionais</li>
+              <li>Sistemas sob necessidade real do cliente</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio section" id="portfolio">
+      <div class="container portfolio-grid">
+        <div class="portfolio-copy reveal">
+          <span class="eyebrow">Portfólio</span>
+          <h2>Projeto já publicado</h2>
           <p>
-            A proposta da Opervio é desenvolver soluções digitais com aplicação prática, boa apresentação e foco em eficiência. Esta página é a base institucional da marca e também o ponto de partida para futuros produtos e serviços.
+            A landing page da <strong>Dra. Iasmim Borges</strong> foi construída para apresentação profissional na área da saúde,
+            com navegação clara, visual elegante e foco em autoridade, biografia e contato.
+          </p>
+          <ul class="portfolio-list">
+            <li>Projeto real publicado</li>
+            <li>Layout responsivo e visual refinado</li>
+            <li>Modelo que serve como referência de qualidade da Opervio</li>
+          </ul>
+          <div class="portfolio-actions">
+            <a class="btn btn-primary" href="https://iasmimfisio.com.br" target="_blank" rel="noopener">Abrir projeto</a>
+            <a class="btn btn-secondary" href="https://www.instagram.com/opervio_solutions/" target="_blank" rel="noopener">Ver Instagram</a>
+          </div>
+        </div>
+        <div class="portfolio-preview reveal delay-1">
+          <div class="portfolio-frame glass">
+            <img src="assets/iasmim-preview.png" alt="Prévia do site da Dra. Iasmim Borges" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process section" id="processo">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Processo</span>
+          <h2>Como funciona a entrega</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item glass reveal">
+            <span>01</span>
+            <h3>Entendimento do projeto</h3>
+            <p>Você apresenta sua necessidade, objetivo, público e referências visuais.</p>
+          </div>
+          <div class="timeline-item glass reveal delay-1">
+            <span>02</span>
+            <h3>Construção da solução</h3>
+            <p>A Opervio estrutura layout, conteúdo, tecnologia e experiência conforme o escopo definido.</p>
+          </div>
+          <div class="timeline-item glass reveal delay-2">
+            <span>03</span>
+            <h3>Publicação e suporte inicial</h3>
+            <p>O projeto é colocado no ar, com domínio, ajustes finais e suporte para os primeiros passos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section" id="sobre">
+      <div class="container about-grid">
+        <div class="about-card glass reveal">
+          <span class="eyebrow">Sobre a Opervio</span>
+          <h2>Tecnologia acessível, prática e orientada a resolver problemas reais.</h2>
+          <p>
+            A <strong>Opervio Solutions</strong> é uma startup de tecnologia focada em desenvolver soluções digitais e softwares personalizados
+            para empresas e pessoas físicas que trabalham com clientes e precisam de mais presença digital, organização e eficiência.
+          </p>
+          <p>
+            Nosso objetivo é entregar ferramentas modernas, funcionais e com excelente custo-benefício — desde uma landing page profissional
+            até sistemas voltados para automação de tarefas, banco de dados, análise de dados, orçamentos e outras necessidades específicas.
+          </p>
+          <p>
+            Acreditamos que tecnologia de qualidade não precisa ser complicada nem inacessível. Por isso, cada projeto é pensado de forma direta,
+            clara e sob medida, sempre buscando unir visual profissional, utilidade prática e preço acessível.
           </p>
         </div>
 
-        <div class="cards">
-          <article class="card">
-            <div class="card-icon">🌐</div>
-            <h3>Landing pages e sites leves</h3>
-            <p>
-              Criação de landing pages para profissionais autônomos e sites institucionais para pequenas empresas que precisam se apresentar com clareza e profissionalismo.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="card-icon">⚙️</div>
-            <h3>Sistemas sob medida</h3>
-            <p>
-              Desenvolvimento de ferramentas personalizadas para rotinas, cadastros, checklists, relatórios, controle interno e processos específicos.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="card-icon">📈</div>
-            <h3>Produtos digitais</h3>
-            <p>
-              Estrutura preparada para lançamento de soluções próprias, páginas de produto e projetos com identidade visual alinhada à marca.
-            </p>
-          </article>
+        <div class="about-side reveal delay-1">
+          <div class="about-mini glass">
+            <strong>Foco</strong>
+            <span>Presença digital, automação e softwares sob medida</span>
+          </div>
+          <div class="about-mini glass">
+            <strong>Perfil</strong>
+            <span>Moderno, startup, tecnológico e objetivo</span>
+          </div>
+          <div class="about-mini glass">
+            <strong>Contato oficial</strong>
+            <span>atendimento@opervio.com.br</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="sobre">
-      <div class="container about">
-        <div class="about-panel">
-          <div class="section-head" style="margin-bottom:0;">
-            <h2>Tecnologia aplicada ao que realmente importa</h2>
-            <p>
-              A Opervio foi pensada para atender empresas e profissionais que precisam de soluções claras, funcionais e com apresentação profissional. O objetivo é unir tecnologia, simplicidade e valor prático em cada entrega.
-            </p>
+    <section class="estimate section">
+      <div class="container estimate-grid">
+        <div class="section-head reveal">
+          <span class="eyebrow">Orçamento rápido</span>
+          <h2>Tenha uma estimativa inicial em segundos</h2>
+          <p>Use o simulador abaixo para visualizar um valor base conforme o tipo de serviço desejado.</p>
+        </div>
+
+        <div class="estimate-card glass reveal delay-1">
+          <label>
+            Serviço
+            <select id="serviceSelect">
+              <option value="650">Landing Page Profissional — R$ 650</option>
+              <option value="850">Presença Digital — R$ 850</option>
+              <option value="1500">Software / automação — a partir de R$ 1.500</option>
+            </select>
+          </label>
+
+          <label>
+            Precisa de urgência?
+            <select id="urgencySelect">
+              <option value="0">Prazo normal</option>
+              <option value="200">Sim, prioridade de execução</option>
+            </select>
+          </label>
+
+          <label>
+            Quantidade de páginas / módulos
+            <input id="moduleInput" type="range" min="1" max="5" value="1" />
+            <small id="moduleValue">1 unidade</small>
+          </label>
+
+          <div class="estimate-result">
+            <span>Estimativa inicial</span>
+            <strong id="estimateTotal">R$ 650</strong>
+            <p>Valor de referência. O orçamento final depende do escopo real do projeto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contato">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <span class="eyebrow">Contato</span>
+          <h2>Vamos colocar sua estrutura digital em funcionamento</h2>
+          <p>Entre em contato para solicitar orçamento, apresentar sua ideia ou conversar sobre a melhor solução para o seu caso.</p>
+          <div class="contact-list">
+            <a href="mailto:atendimento@opervio.com.br">atendimento@opervio.com.br</a>
+            <a href="https://wa.me/5561981465900" target="_blank" rel="noopener">WhatsApp: (61) 98146-5900</a>
+            <a href="https://www.instagram.com/opervio_solutions/" target="_blank" rel="noopener">Instagram: @opervio_solutions</a>
           </div>
         </div>
 
-        <div class="about-panel">
-          <ul>
-            <li><strong style="color:var(--text);">Clareza:</strong> comunicação objetiva, proposta direta e soluções que o cliente entende com facilidade.</li>
-            <li><strong style="color:var(--text);">Eficiência:</strong> desenvolvimento voltado para simplificar processos, reduzir retrabalho e aumentar produtividade.</li>
-            <li><strong style="color:var(--text);">Evolução:</strong> base construída para crescer com a empresa, incorporando novos serviços, páginas e produtos digitais.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="contato">
-      <div class="container">
-        <div class="cta-box">
-          <div class="contact-grid">
-            <div class="contact-copy">
-              <h2>Fale com a Opervio</h2>
-              <p>
-                Se você busca uma landing page profissional, um site para pequena empresa ou uma solução sob medida, envie sua mensagem. Esta seção já funciona como um canal inicial de contato e pode ser evoluída depois para integração completa com formulário profissional.
-              </p>
-
-              <div class="contact-chips">
-                <span class="contact-chip">Atendimento por e-mail</span>
-                <span class="contact-chip">Projetos sob demanda</span>
-                <span class="contact-chip">Publicação em domínio próprio</span>
-              </div>
-
-              <div class="cta-actions">
-                <a class="btn btn-secondary" href="mailto:contato@opervio.com.br">contato@opervio.com.br</a>
-                <a class="btn btn-secondary" href="#inicio">Voltar ao topo</a>
-              </div>
-            </div>
-
-            <form class="contact-form" id="contactForm">
-              <div class="input-group">
-                <label for="nome">Nome</label>
-                <input id="nome" name="nome" type="text" placeholder="Seu nome" required />
-              </div>
-
-              <div class="input-group">
-                <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" required />
-              </div>
-
-              <div class="input-group">
-                <label for="mensagem">Mensagem</label>
-                <textarea id="mensagem" name="mensagem" placeholder="Escreva aqui o que você precisa para seu projeto." required></textarea>
-              </div>
-
-              <button class="btn btn-primary" type="submit">Enviar mensagem</button>
-              <p class="contact-note">Ao enviar, o site abrirá o aplicativo de e-mail padrão do visitante com a mensagem preenchida. Quando você quiser, isso pode ser substituído por um formulário com recebimento automático.</p>
-            </form>
+        <div class="contact-card glass reveal delay-1">
+          <h3>Solicite seu orçamento</h3>
+          <p>Escolha o canal de contato e fale diretamente com a Opervio.</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary full" href="https://wa.me/5561981465900" target="_blank" rel="noopener">Falar no WhatsApp</a>
+            <a class="btn btn-secondary full" href="mailto:atendimento@opervio.com.br">Enviar e-mail</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> Opervio Solutions. Todos os direitos reservados.</div>
-      <div>Opervio Solutions — presença digital e software com clareza, estrutura e propósito.</div>
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <div>
+        <img class="footer-logo" src="assets/logo-opervio.png" alt="Opervio Solutions" />
+        <p>Soluções digitais modernas para profissionais e empresas.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#servicos">Serviços</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </div>
     </div>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <a class="whatsapp-float" href="https://wa.me/5561981465900" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.54 2 2.08 6.46 2.08 11.95c0 1.76.46 3.48 1.34 5L2 22l5.21-1.37a9.92 9.92 0 0 0 4.82 1.23h.01c5.49 0 9.95-4.46 9.95-9.95 0-2.66-1.03-5.16-2.94-7Zm-7.02 15.26h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.09.81.83-3.01-.2-.31a8.23 8.23 0 0 1-1.27-4.38c0-4.55 3.7-8.25 8.25-8.25 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.84c0 4.55-3.7 8.25-8.25 8.25Zm4.53-6.17c-.25-.12-1.47-.72-1.7-.8-.23-.09-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.45-1.37-1.69-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.77-1.84-.2-.47-.4-.41-.56-.42h-.48c-.16 0-.43.06-.65.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.41 1.01 2.58.12.16 1.75 2.67 4.24 3.74.59.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+  </a>
 
-    const contactForm = document.getElementById('contactForm');
-
-    if (contactForm) {
-      contactForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const nome = document.getElementById('nome').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const mensagem = document.getElementById('mensagem').value.trim();
-
-        const subject = encodeURIComponent(`Contato pelo site - ${nome}`);
-        const body = encodeURIComponent(`Nome: ${nome}
-E-mail: ${email}
-
-Mensagem:
-${mensagem}`);
-
-        window.location.href = `mailto:contato@opervio.com.br?subject=${subject}&body=${body}`;
-      });
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
