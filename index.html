@@ -3,352 +3,402 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Opervio Solutions | Sites, E-mail Profissional e Softwares Sob Medida</title>
-  <meta name="description" content="A Opervio Solutions desenvolve landing pages, e-mails profissionais com domínio próprio e softwares sob medida para empresas e profissionais." />
-  <meta name="theme-color" content="#07152f" />
+  <title>Opervio Solutions | Soluções digitais premium</title>
+  <meta name="description" content="Landing pages, software sob medida, automações e presença digital premium para profissionais e empresas." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg-2:#0d1b2f;
+      --panel:rgba(255,255,255,.08);
+      --panel-strong:rgba(255,255,255,.12);
+      --line:rgba(255,255,255,.12);
+      --text:#eef4ff;
+      --muted:#9fb0cb;
+      --brand:#7cb4ff;
+      --brand-2:#2c7fff;
+      --accent:#cde2ff;
+      --shadow:0 20px 80px rgba(0,0,0,.35);
+      --radius:24px;
+      --radius-sm:18px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(80,129,255,.24), transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,.08), transparent 18%),
+        radial-gradient(circle at 75% 75%, rgba(53,110,255,.18), transparent 26%),
+        linear-gradient(180deg, #09111f 0%, #081221 30%, #07101c 100%);
+      overflow-x:hidden;
+    }
+    body::before, body::after{
+      content:""; position:fixed; inset:auto; width:420px; height:420px; border-radius:50%; filter:blur(100px); opacity:.28; z-index:-2; pointer-events:none; animation: floatBlob 12s ease-in-out infinite;
+    }
+    body::before{top:-120px; left:-120px; background:#2f7eff}
+    body::after{bottom:-160px; right:-120px; background:#87b6ff; animation-delay:-4s}
+    @keyframes floatBlob{0%,100%{transform:translateY(0) translateX(0) scale(1)}50%{transform:translateY(18px) translateX(12px) scale(1.06)}}
+    .grid-overlay{position:fixed; inset:0; background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size:42px 42px; mask-image:linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.15)); pointer-events:none; z-index:-1}
+    img{max-width:100%; display:block}
+    a{text-decoration:none; color:inherit}
+    .container{width:min(calc(100% - 32px), var(--max)); margin:0 auto}
+    .section{padding:92px 0; position:relative}
+    .glass{background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.05)); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid var(--line); box-shadow:var(--shadow)}
+    .eyebrow{display:inline-flex; align-items:center; gap:10px; color:var(--accent); font-size:.78rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700; margin-bottom:18px}
+    .eyebrow::before{content:""; width:34px; height:1px; background:linear-gradient(90deg, transparent, var(--brand), transparent)}
+    h1,h2,h3,p{margin:0}
+    h1{font-size:clamp(2.4rem, 7vw, 5rem); line-height:.95; letter-spacing:-.045em}
+    h2{font-size:clamp(1.8rem,4.3vw,3.2rem); line-height:1.02; letter-spacing:-.03em}
+    h3{font-size:1.15rem; line-height:1.2}
+    p{color:var(--muted); line-height:1.7}
+    .site-header{position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); background:rgba(7,17,31,.46); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{height:78px; display:flex; align-items:center; justify-content:space-between; gap:20px}
+    .brand{display:flex; align-items:center; gap:14px; font-weight:800; letter-spacing:.04em}
+    .brand img{height:48px; width:auto; border-radius:12px}
+    .menu{display:flex; align-items:center; gap:26px}
+    .menu a{color:#dce7fb; font-weight:600; font-size:.95rem; opacity:.92}
+    .menu a:hover{opacity:1}
+    .menu-toggle{display:none; width:50px; height:50px; border-radius:16px; border:1px solid var(--line); background:rgba(255,255,255,.08); color:white; cursor:pointer; font-size:1.1rem}
+    .sidebar-overlay{position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(4px); opacity:0; pointer-events:none; transition:.25s ease; z-index:79}
+    .sidebar-overlay.open{opacity:1; pointer-events:auto}
+    .mobile-sidebar{position:fixed; top:0; right:-320px; width:min(86vw, 320px); height:100vh; padding:22px; background:rgba(7,17,31,.96); border-left:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow); transition:right .28s ease; z-index:80; display:flex; flex-direction:column; gap:14px}
+    .mobile-sidebar.open{right:0}
+    .mobile-sidebar .sidebar-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
+    .mobile-sidebar .sidebar-head img{height:42px; width:auto; border-radius:10px}
+    .close-sidebar{width:44px; height:44px; border-radius:14px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.05); color:white; font-size:1.2rem; cursor:pointer}
+    .mobile-sidebar a{padding:14px 16px; border-radius:16px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.04); color:#e8f0ff; font-weight:700}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:0 22px; border-radius:16px; border:1px solid rgba(255,255,255,.06); background:linear-gradient(135deg,var(--brand-2),#7eb5ff); color:#07111f; font-weight:800; letter-spacing:-.02em; box-shadow:0 16px 34px rgba(44,127,255,.28); transition:transform .25s ease, box-shadow .25s ease}
+    .btn:hover{transform:translateY(-2px); box-shadow:0 22px 40px rgba(44,127,255,.36)}
+    .btn-ghost{background:rgba(255,255,255,.04); color:var(--text); border:1px solid rgba(255,255,255,.12); box-shadow:none}
+    .btn-sm{min-height:44px; padding:0 18px; border-radius:14px}
+    .btn-full{width:100%}
+    .hero{padding:66px 0 36px}
+    .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:34px; align-items:center}
+    .hero-copy p{max-width:650px; font-size:1.05rem; margin-top:22px}
+    .gradient-title{background:linear-gradient(90deg, #ffffff 0%, #d8e7ff 48%, #89b7ff 100%); -webkit-background-clip:text; background-clip:text; color:transparent; display:inline}
+    .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-top:28px}
+    .hero-pills{display:flex; flex-wrap:wrap; gap:12px; margin-top:28px}
+    .pill{padding:12px 16px; border-radius:999px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.05); color:#dbe7ff; font-size:.9rem; font-weight:600}
+    .hero-proof{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; max-width:560px}
+    .proof-card{padding:16px; border-radius:18px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08)}
+    .proof-card strong{display:block; font-size:1.1rem; color:white; margin-bottom:4px}
+    .proof-card span{font-size:.84rem; color:var(--muted)}
+    .hero-visual{position:relative; min-height:620px; display:flex; align-items:center; justify-content:center}
+    .orbit{position:absolute; border:1px solid rgba(255,255,255,.08); border-radius:50%; animation:spin 24s linear infinite}
+    .orbit.orbit-a{width:540px; height:540px}.orbit.orbit-b{width:430px; height:430px; animation-duration:18s; animation-direction:reverse}.orbit.orbit-c{width:320px; height:320px; animation-duration:14s}
+    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+    .floating-tag{position:absolute; padding:14px 16px; border-radius:18px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.08); backdrop-filter:blur(18px); font-weight:700; color:#e6efff; box-shadow:var(--shadow); animation:levitate 6s ease-in-out infinite; z-index:2}
+    .floating-tag small{display:block; color:var(--muted); font-size:.74rem; font-weight:600; margin-bottom:6px}
+    .tag-1{top:46px; left:0}.tag-2{right:10px; top:130px; animation-delay:-2s}.tag-3{left:28px; bottom:40px; animation-delay:-3.5s}
+    @keyframes levitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .device-wrap{width:min(100%, 520px); position:relative; z-index:3; transform:perspective(1200px) rotateY(-10deg) rotateX(4deg); transition:transform .4s ease}
+    .device-wrap:hover{transform:perspective(1200px) rotateY(-4deg) rotateX(1deg) translateY(-4px)}
+    .laptop{border-radius:28px; padding:16px; background:linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.08)); border:1px solid rgba(255,255,255,.14); box-shadow:0 28px 90px rgba(0,0,0,.45)}
+    .screen{border-radius:22px; overflow:hidden; background:linear-gradient(180deg,#0f1c32,#0b1526); border:1px solid rgba(255,255,255,.08); min-height:360px; position:relative}
+    .screen-top{height:50px; display:flex; align-items:center; justify-content:space-between; padding:0 18px; background:rgba(255,255,255,.04); border-bottom:1px solid rgba(255,255,255,.06)}
+    .dots{display:flex; gap:8px}.dots span{width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.3)}
+    .screen-label{font-size:.78rem; color:#dce7fb; letter-spacing:.14em; text-transform:uppercase; font-weight:700}
+    .screen-content{padding:22px; display:grid; gap:18px}
+    .mockup-hero{display:grid; grid-template-columns:1.1fr .9fr; gap:18px}
+    .mock-block,.mock-chart,.mock-strip{border-radius:18px; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04))}
+    .mock-block{padding:18px; min-height:168px}
+    .line,.phone-line{height:10px; border-radius:999px; background:linear-gradient(90deg, rgba(255,255,255,.7), rgba(124,180,255,.38)); margin-bottom:10px; opacity:.9}
+    .line:last-child,.phone-line:last-child{margin-bottom:0}
+    .w-90{width:90%}.w-70{width:70%}.w-55{width:55%}.w-40{width:40%}
+    .mock-chart{min-height:168px; padding:18px; display:flex; align-items:flex-end; gap:12px}
+    .bar{flex:1; border-radius:12px 12px 6px 6px; background:linear-gradient(180deg, #a7ccff, #2b7dff); box-shadow:0 12px 24px rgba(43,125,255,.18); animation:rise 1.2s ease forwards; transform-origin:bottom}
+    .bar:nth-child(1){height:38%}.bar:nth-child(2){height:68%}.bar:nth-child(3){height:52%}.bar:nth-child(4){height:82%}.bar:nth-child(5){height:63%}
+    @keyframes rise{from{transform:scaleY(.1); opacity:.3}to{transform:scaleY(1); opacity:1}}
+    .mock-strip{padding:18px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .mini-stat{padding:14px; border-radius:16px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06)}
+    .mini-stat strong{display:block; font-size:1rem; margin-bottom:6px}.mini-stat span{font-size:.8rem; color:var(--muted)}
+    .laptop-base{width:84%; height:18px; margin:0 auto; border-radius:0 0 20px 20px; background:linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,.08)); box-shadow:0 18px 50px rgba(0,0,0,.34)}
+    .phone{position:absolute; right:-30px; bottom:-10px; width:210px; border-radius:34px; padding:10px; background:linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,.07)); border:1px solid rgba(255,255,255,.16); box-shadow:0 30px 60px rgba(0,0,0,.4); z-index:5; animation:phoneFloat 6s ease-in-out infinite}
+    @keyframes phoneFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    .phone-screen{min-height:370px; border-radius:26px; overflow:hidden; background:linear-gradient(180deg, #f4f7fb, #dfe6f0); color:#10203d; padding:18px}
+    .phone-notch{width:76px; height:10px; border-radius:999px; background:#172742; margin:2px auto 16px; opacity:.85}
+    .phone-card{background:white; border-radius:18px; padding:16px; box-shadow:0 10px 24px rgba(0,0,0,.08); margin-bottom:12px}
+    .phone-card strong{display:block; font-size:1rem; margin-bottom:10px}
+    .phone-btn{height:42px; border-radius:14px; background:#09152b; color:white; display:flex; align-items:center; justify-content:center; font-weight:800; margin-top:14px}
+    .trusted-wrap{display:grid; grid-template-columns:repeat(5,1fr); gap:16px; padding:18px; border-radius:22px}
+    .trusted-item{text-align:center; padding:18px 14px; border-radius:18px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.04); font-weight:700; color:#dce7fb}
+    .section-head{max-width:720px; margin-bottom:28px}.section-head p{margin-top:14px}
+    .services-grid,.portfolio-grid,.adv-grid,.process-grid,.metrics-grid,.contact-grid,.footer-grid,.showcase-grid{display:grid; gap:20px}
+    .services-grid{grid-template-columns:repeat(3,1fr)}
+    .card{padding:26px; border-radius:24px; position:relative; overflow:hidden; transition:transform .25s ease, border-color .25s ease}
+    .card:hover{transform:translateY(-6px); border-color:rgba(124,180,255,.28)}
+    .card::before{content:""; position:absolute; inset:auto -70px -70px auto; width:170px; height:170px; border-radius:50%; background:radial-gradient(circle, rgba(124,180,255,.18), transparent 65%); pointer-events:none}
+    .card-icon{width:54px; height:54px; border-radius:18px; display:grid; place-items:center; background:linear-gradient(135deg, rgba(124,180,255,.24), rgba(255,255,255,.09)); border:1px solid rgba(255,255,255,.1); margin-bottom:16px; font-size:1.3rem}
+    .card h3{margin-bottom:10px}.card p{margin-bottom:16px}
+    .list{display:grid; gap:10px}
+    .list span{display:flex; align-items:flex-start; gap:10px; color:#d9e6fb; font-size:.94rem}
+    .list span::before{content:"✦"; color:var(--brand); font-size:.9rem; margin-top:2px}
+    .price{display:block; margin-top:20px; font-size:1.1rem; font-weight:800; color:white}
+    .featured{outline:1px solid rgba(124,180,255,.26); box-shadow:0 20px 70px rgba(44,127,255,.14)}
+    .process-grid{grid-template-columns:repeat(3,1fr)}
+    .step{padding:26px; border-radius:24px; position:relative}
+    .step-number{width:44px; height:44px; border-radius:14px; display:grid; place-items:center; font-weight:800; background:linear-gradient(135deg,#7cb4ff,#d6e8ff); color:#07111f; margin-bottom:16px}
+    .adv-grid{grid-template-columns:repeat(4,1fr)}
+    .adv{padding:22px; border-radius:22px; text-align:left}
+    .adv strong{display:block; margin-bottom:8px; font-size:1rem}.adv span{color:var(--muted); font-size:.92rem; line-height:1.6}
+    .portfolio-grid{grid-template-columns:1.08fr .92fr; align-items:center}
+    .portfolio-visual{padding:18px; border-radius:28px; position:relative; min-height:560px}
+    .portfolio-stack{position:relative; width:100%; height:100%; min-height:520px}
+    .portfolio-browser,.portfolio-phone,.floating-mini{position:absolute; border:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.05)); backdrop-filter:blur(18px); box-shadow:var(--shadow)}
+    .portfolio-browser{inset:0 50px 40px 0; border-radius:28px; overflow:hidden; padding:14px}
+    .browser-shell{width:100%; height:100%; border-radius:22px; overflow:hidden; background:linear-gradient(180deg,#eef3fb,#dfe7f2)}
+    .browser-top{height:54px; background:#ffffffc9; display:flex; align-items:center; gap:14px; padding:0 18px; border-bottom:1px solid rgba(11,21,38,.08)}
+    .browser-pill{flex:1; height:16px; border-radius:999px; background:#dbe6f5}
+    .browser-content{padding:14px; display:grid; grid-template-columns:1fr; gap:16px; height:calc(100% - 54px); background:linear-gradient(180deg,#eef3fb,#dfe7f2)}
+    .site-preview,.preview-shot{border-radius:18px; background:white; box-shadow:0 10px 22px rgba(0,0,0,.06); overflow:hidden}
+    .site-preview{height:100%; display:flex; align-items:center; justify-content:center}
+    .site-preview img{width:100%; height:100%; object-fit:cover; object-position:top center}
+    .portfolio-phone{width:230px; right:0; bottom:0; border-radius:34px; padding:10px; transform:rotate(5deg)}
+    .portfolio-phone .phone-screen{min-height:420px; padding:0; background:#dfe5ee}
+    .portfolio-phone .phone-screen img{width:100%; height:100%; min-height:420px; object-fit:cover; object-position:center top}
+    .floating-mini{padding:16px; border-radius:22px; left:28px; bottom:10px; min-width:190px; animation:levitate 6s ease-in-out infinite}
+    .floating-mini strong{display:block; font-size:1rem; margin-bottom:6px}.floating-mini span{font-size:.88rem; color:var(--muted)}
+    .portfolio-copy{display:grid; gap:18px; align-content:start}
+    .portfolio-list{display:grid; gap:12px}
+    .portfolio-point{padding:16px 18px; border-radius:18px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.04)}
+    .portfolio-point strong{display:block; margin-bottom:6px}
+    .showcase-grid{grid-template-columns:repeat(2,1fr)}
+    .shot-card{padding:16px; border-radius:24px; overflow:hidden}
+    .shot-media{border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.08); aspect-ratio:16/10; background:#09111f}
+    .shot-media img{width:100%; height:100%; object-fit:cover; object-position:top center}
+    .shot-card h3{margin:16px 0 8px}
+    .metrics-grid{grid-template-columns:repeat(4,1fr)}
+    .metric-box{padding:24px; border-radius:24px; text-align:center}
+    .metric-box strong{display:block; font-size:1.9rem; margin-bottom:8px}.metric-box span{color:var(--muted); font-size:.92rem}
+    .contact-grid{grid-template-columns:1fr .9fr; align-items:stretch}
+    .contact-panel,.contact-box{padding:28px; border-radius:28px}
+    .contact-links{display:grid; gap:14px; margin-top:22px}
+    .contact-link{display:flex; align-items:center; gap:14px; padding:16px 18px; border-radius:18px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08)}
+    .contact-link .ico{width:40px; height:40px; border-radius:14px; display:grid; place-items:center; background:rgba(124,180,255,.18); border:1px solid rgba(255,255,255,.08)}
+    .contact-box p{margin-top:10px; margin-bottom:20px}.contact-stack{display:grid; gap:12px}
+    .footer{padding:30px 0 54px}.footer-grid{grid-template-columns:1fr auto; align-items:center}
+    .footer-note{color:var(--muted); max-width:520px}.footer-nav{display:flex; gap:18px; flex-wrap:wrap; justify-content:flex-end}.footer-nav a{color:#dbe7ff}
+    .floating-wa{position:fixed; right:20px; bottom:20px; width:62px; height:62px; border-radius:20px; display:grid; place-items:center; background:linear-gradient(135deg,#25d366,#80f2a7); color:#062111; font-size:1.35rem; font-weight:900; box-shadow:0 18px 44px rgba(37,211,102,.28); z-index:70}
+    .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease}.reveal.is-visible{opacity:1; transform:none}
+    @media (max-width:1080px){.hero-grid,.portfolio-grid,.contact-grid{grid-template-columns:1fr}.services-grid{grid-template-columns:repeat(2,1fr)}.adv-grid{grid-template-columns:repeat(2,1fr)}.metrics-grid{grid-template-columns:repeat(2,1fr)}.trusted-wrap{grid-template-columns:repeat(3,1fr)}.hero-visual{min-height:560px}.device-wrap{margin:0 auto}.portfolio-visual{min-height:520px}.showcase-grid{grid-template-columns:1fr}}
+    @media (max-width:760px){.section{padding:74px 0}.nav{height:72px}.menu{display:none}.menu-toggle{display:inline-grid; place-items:center}.hero{padding:32px 0 24px}.hero-grid{gap:28px}.hero-proof{grid-template-columns:1fr 1fr}.services-grid,.process-grid,.adv-grid,.metrics-grid,.trusted-wrap{grid-template-columns:1fr}.hero-visual{min-height:480px}.orbit.orbit-a{width:360px;height:360px}.orbit.orbit-b{width:280px;height:280px}.orbit.orbit-c{width:210px;height:210px}.tag-1,.tag-2,.tag-3{display:none}.device-wrap{transform:none;width:100%}.device-wrap:hover{transform:none}.phone{width:160px;right:-4px;bottom:-18px}.phone-screen{min-height:300px}.mockup-hero,.mock-strip{grid-template-columns:1fr}.portfolio-browser{inset:0 14px 70px 0}.portfolio-phone{width:170px}.floating-mini{left:16px;right:16px;bottom:-14px;min-width:auto}.footer-grid{grid-template-columns:1fr;gap:20px}.footer-nav{justify-content:flex-start}.floating-wa{width:58px;height:58px}}
+  </style>
 </head>
 <body>
-  <div class="site-bg"></div>
-  <header class="header" id="topo">
-    <div class="container nav-wrap">
-      <a href="#topo" class="brand" aria-label="Opervio Solutions">
-        <img src="assets/logo-opervio.png" alt="Logo Opervio Solutions" />
+  <div class="grid-overlay"></div>
+  <div class="sidebar-overlay"></div>
+  <aside class="mobile-sidebar" aria-hidden="true">
+    <div class="sidebar-head">
+      <img src="assets/logo-opervio.png" alt="Opervio Solutions" />
+      <button class="close-sidebar" aria-label="Fechar menu">✕</button>
+    </div>
+    <a href="#home">Home</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#processo">Processo</a>
+    <a href="#portfolio">Portfólio</a>
+    <a href="#vitrine">Vitrine</a>
+    <a href="#contato">Solicitar orçamento</a>
+  </aside>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Opervio Solutions">
+        <img src="assets/logo-opervio.png" alt="Opervio Solutions" />
       </a>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="nav" id="nav">
+      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+      <nav class="menu">
+        <a href="#home">Home</a>
         <a href="#servicos">Serviços</a>
-        <a href="#portfolio">Portfólio</a>
         <a href="#processo">Processo</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contato</a>
-        <a class="nav-cta" href="https://wa.me/5561981465900" target="_blank" rel="noopener">Solicitar orçamento</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#vitrine">Vitrine</a>
+        <a href="#contato" class="btn btn-sm">Solicitar orçamento</a>
       </nav>
     </div>
   </header>
-
   <main>
-    <section class="hero">
+    <section id="home" class="hero section">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <span class="eyebrow">Startup de tecnologia • soluções acessíveis • execução sob medida</span>
-          <h1>Soluções digitais modernas para quem precisa vender, organizar e crescer.</h1>
-          <p>
-            A Opervio Solutions cria <strong>landing pages profissionais</strong>, configura <strong>e-mail corporativo com domínio próprio</strong>
-            e desenvolve <strong>softwares personalizados</strong> para empresas e profissionais que trabalham com clientes e precisam de presença digital e eficiência operacional.
-          </p>
-
+          <span class="eyebrow">Startup de tecnologia · presença digital · software</span>
+          <h1><span class="gradient-title">Transformamos ideias em soluções digitais profissionais.</span></h1>
+          <p>A Opervio cria landing pages, sistemas personalizados, automações e presença digital com visual premium, foco em conversão e experiência impecável no celular.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="https://wa.me/5561981465900" target="_blank" rel="noopener">Falar no WhatsApp</a>
-            <a class="btn btn-secondary" href="#portfolio">Ver portfólio</a>
+            <a class="btn" href="#contato">Solicitar orçamento</a>
+            <a class="btn btn-ghost" href="#portfolio">Ver projetos</a>
           </div>
-
-          <div class="hero-highlights">
-            <div class="mini-card">
-              <strong>Opervio OnePage</strong>
-              <span>Landing page profissional a partir de R$ 650</span>
-            </div>
-            <div class="mini-card">
-              <strong>Presença Digital</strong>
-              <span>Landing page + e-mail corporativo por R$ 850</span>
-            </div>
+          <div class="hero-pills">
+            <div class="pill">Landing pages premium</div>
+            <div class="pill">Softwares sob medida</div>
+            <div class="pill">Aplicações web reais</div>
+          </div>
+          <div class="hero-proof">
+            <div class="proof-card"><strong>Visual premium</strong><span>design moderno com percepção de valor</span></div>
+            <div class="proof-card"><strong>Foco mobile</strong><span>experiência pensada para celular</span></div>
+            <div class="proof-card"><strong>Entrega real</strong><span>sites e software com aplicação prática</span></div>
           </div>
         </div>
-
-        <div class="hero-visual reveal delay-1">
-          <div class="hero-panel glass">
-            <div class="hero-badge">Pacotes prontos para começar</div>
-            <div class="hero-screen">
-              <div class="screen-topbar">
-                <span></span><span></span><span></span>
+        <div class="hero-visual reveal">
+          <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div>
+          <div class="floating-tag tag-1"><small>Produto</small>Landing pages que passam autoridade</div>
+          <div class="floating-tag tag-2"><small>Software real</small>Aplicações web para operações do cliente</div>
+          <div class="floating-tag tag-3"><small>Experiência</small>Visual forte para desktop e mobile</div>
+          <div class="device-wrap">
+            <div class="laptop">
+              <div class="screen">
+                <div class="screen-top"><div class="dots"><span></span><span></span><span></span></div><div class="screen-label">Opervio Preview</div></div>
+                <div class="screen-content">
+                  <div class="mockup-hero">
+                    <div class="mock-block"><div class="line w-55"></div><div class="line w-90"></div><div class="line w-70"></div><div class="line w-40"></div></div>
+                    <div class="mock-chart"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+                  </div>
+                  <div class="mock-strip">
+                    <div class="mini-stat"><strong>OnePage</strong><span>presença digital profissional</span></div>
+                    <div class="mini-stat"><strong>Software</strong><span>controle, dados e produtividade</span></div>
+                    <div class="mini-stat"><strong>Automação</strong><span>menos tarefas manuais</span></div>
+                  </div>
+                </div>
               </div>
-              <div class="screen-content">
-                <div class="screen-left">
-                  <p class="screen-label">Opervio Solutions</p>
-                  <h3>Sua estrutura digital começa aqui.</h3>
-                  <ul>
-                    <li>Landing page profissional</li>
-                    <li>E-mail com domínio próprio</li>
-                    <li>Automação e softwares sob medida</li>
-                  </ul>
-                </div>
-                <div class="screen-right">
-                  <div class="metric-card">
-                    <span>Produto destaque</span>
-                    <strong>Presença Digital</strong>
-                    <small>R$ 850</small>
-                  </div>
-                  <div class="metric-card alt">
-                    <span>Contato oficial</span>
-                    <strong>atendimento@opervio.com.br</strong>
-                  </div>
-                </div>
+              <div class="laptop-base"></div>
+            </div>
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-notch"></div>
+                <div class="phone-card"><strong>Opervio Mobile</strong><div class="phone-line" style="width:82%"></div><div class="phone-line" style="width:68%"></div><div class="phone-line" style="width:54%"></div><div class="phone-btn">Solicitar orçamento</div></div>
+                <div class="phone-card"><div class="phone-line" style="width:66%"></div><div class="phone-line" style="width:88%"></div><div class="phone-line" style="width:48%"></div></div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <section class="proof">
-      <div class="container proof-grid">
-        <div class="proof-card glass reveal">
-          <span>Entrega objetiva</span>
-          <strong>Sites e soluções com foco em resultado real</strong>
-        </div>
-        <div class="proof-card glass reveal delay-1">
-          <span>Atendimento direto</span>
-          <strong>Contato rápido pelo WhatsApp e e-mail profissional</strong>
-        </div>
-        <div class="proof-card glass reveal delay-2">
-          <span>Escalável</span>
-          <strong>Do site institucional ao software sob medida</strong>
-        </div>
-      </div>
+    <section class="section">
+      <div class="container"><div class="trusted-wrap glass reveal"><div class="trusted-item">Landing Pages</div><div class="trusted-item">Sites Profissionais</div><div class="trusted-item">Softwares Web</div><div class="trusted-item">Automação</div><div class="trusted-item">Experiência Mobile</div></div></div>
     </section>
-
-    <section class="services section" id="servicos">
+    <section id="servicos" class="section">
       <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Serviços</span>
-          <h2>O que a Opervio pode construir para você</h2>
-          <p>Pacotes claros para presença digital imediata e soluções personalizadas para processos internos e rotinas operacionais.</p>
-        </div>
-
-        <div class="services-grid">
-          <article class="service-card glass reveal">
-            <div class="service-top">
-              <span class="service-tag">Produto</span>
-              <h3>Opervio OnePage</h3>
-              <div class="price">R$ 650</div>
-            </div>
-            <p>Landing page profissional para apresentar serviços, reforçar autoridade e facilitar o contato com seus clientes.</p>
-            <ul>
-              <li>Layout moderno e responsivo</li>
-              <li>Integração com WhatsApp e redes sociais</li>
-              <li>Publicação no domínio</li>
-              <li>Otimização para celular</li>
-              <li>Suporte inicial</li>
-            </ul>
-          </article>
-
-          <article class="service-card glass featured reveal delay-1">
-            <div class="ribbon">Mais procurado</div>
-            <div class="service-top">
-              <span class="service-tag">Pacote</span>
-              <h3>Presença Digital</h3>
-              <div class="price">R$ 850</div>
-            </div>
-            <p>Pacote ideal para quem quer entrar no digital com mais credibilidade e estrutura profissional desde o início.</p>
-            <ul>
-              <li>Landing page profissional</li>
-              <li>E-mail corporativo com domínio próprio</li>
-              <li>Configuração de DNS e publicação</li>
-              <li>Integração com WhatsApp e Instagram</li>
-              <li>Suporte inicial de implantação</li>
-            </ul>
-          </article>
-
-          <article class="service-card glass reveal delay-2">
-            <div class="service-top">
-              <span class="service-tag">Sob medida</span>
-              <h3>Softwares e Automação</h3>
-              <div class="price small">Projeto personalizado</div>
-            </div>
-            <p>Soluções para automatizar tarefas, organizar dados e transformar rotinas manuais em processos mais eficientes.</p>
-            <ul>
-              <li>Bancos de dados e cadastros</li>
-              <li>Análise e organização de dados</li>
-              <li>Ferramentas de orçamento e relatórios</li>
-              <li>Automação de tarefas operacionais</li>
-              <li>Sistemas sob necessidade real do cliente</li>
-            </ul>
-          </article>
+        <div class="section-head reveal"><span class="eyebrow">Serviços</span><h2>O que a Opervio entrega com padrão premium</h2><p>Projetos com estética forte, estrutura estratégica e foco em fazer o cliente parecer mais profissional e mais valioso no digital.</p></div>
+        <div class="services-grid reveal">
+          <article class="card glass"><div class="card-icon">✦</div><h3>Landing pages premium</h3><p>Páginas pensadas para causar impacto imediato, apresentar seu serviço com clareza e converter no celular.</p><div class="list"><span>Hero visual com mockups e chamadas fortes</span><span>Design responsivo e elegante</span><span>Integração com WhatsApp, Instagram e e-mail</span><span>Publicação em domínio próprio</span></div><span class="price">OnePage Opervio</span></article>
+          <article class="card glass featured"><div class="card-icon">⚡</div><h3>Presença digital completa</h3><p>Para quem quer aparecer de forma séria e profissional desde o primeiro contato com o cliente.</p><div class="list"><span>Landing page + e-mail profissional</span><span>Configuração de domínio e DNS</span><span>Estrutura visual premium</span><span>Base pronta para expansão futura</span></div><span class="price">Pacote mais procurado</span></article>
+          <article class="card glass"><div class="card-icon">◉</div><h3>Softwares sob medida</h3><p>Sistemas web e soluções personalizadas para controle, cadastros, relatórios, banco de dados e automações.</p><div class="list"><span>Painéis administrativos</span><span>Fluxos de cadastro e consulta</span><span>Relatórios e organização de dados</span><span>Soluções adaptadas à operação do cliente</span></div><span class="price">Projeto personalizado</span></article>
         </div>
       </div>
     </section>
-
-    <section class="portfolio section" id="portfolio">
+    <section id="processo" class="section">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Processo</span><h2>Como a Opervio transforma uma ideia em produto</h2><p>Um fluxo simples, objetivo e profissional para tirar o projeto do papel com clareza em cada etapa.</p></div>
+        <div class="process-grid reveal">
+          <div class="step glass"><div class="step-number">1</div><h3>Entendimento estratégico</h3><p>Mapeamos o objetivo do projeto, público, fluxo ideal e o tipo de solução que faz mais sentido para o cenário real.</p></div>
+          <div class="step glass"><div class="step-number">2</div><h3>Design + estrutura</h3><p>Construímos o visual, definimos a arquitetura da página ou sistema e desenhamos uma experiência premium para desktop e mobile.</p></div>
+          <div class="step glass"><div class="step-number">3</div><h3>Entrega e publicação</h3><p>Publicamos, testamos, conectamos domínio e deixamos a solução pronta para uso real ou evolução futura.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Diferenciais</span><h2>Tecnologia prática com imagem de empresa grande</h2><p>O objetivo não é apenas entregar um site bonito, mas criar uma percepção de qualidade que aumenta confiança, autoridade e valor percebido.</p></div>
+        <div class="adv-grid reveal">
+          <div class="adv glass"><strong>Visual de alto nível</strong><span>Seções bem compostas, efeitos sutis, profundidade visual e acabamento premium.</span></div>
+          <div class="adv glass"><strong>Experiência mobile first</strong><span>Estrutura desenhada para quem acessa pelo celular e decide rápido.</span></div>
+          <div class="adv glass"><strong>Clareza comercial</strong><span>Mensagem objetiva, hierarquia visual forte e CTA bem posicionada.</span></div>
+          <div class="adv glass"><strong>Base para crescer</strong><span>Páginas e sistemas já pensados para receber novas seções, módulos e integrações.</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="portfolio" class="section">
       <div class="container portfolio-grid">
+        <div class="portfolio-visual glass reveal">
+          <div class="portfolio-stack">
+            <div class="portfolio-browser">
+              <div class="browser-shell">
+                <div class="browser-top"><div class="dots"><span></span><span></span><span></span></div><div class="browser-pill"></div></div>
+                <div class="browser-content"><div class="site-preview"><img src="assets/portfolio-iasmim.png" alt="Projeto Dra. Iasmim Borges" /></div></div>
+              </div>
+            </div>
+            <div class="portfolio-phone"><div class="phone-screen"><img src="assets/scn-controle.png" alt="Sistema SCN Controle" /></div></div>
+            <div class="floating-mini"><strong>Projetos reais e demos premium</strong><span>Landing pages profissionais, sistema web real para condomínio e conceitos comerciais de alto impacto visual.</span></div>
+          </div>
+        </div>
         <div class="portfolio-copy reveal">
-          <span class="eyebrow">Portfólio</span>
-          <h2>Projeto já publicado</h2>
-          <p>
-            A landing page da <strong>Dra. Iasmim Borges</strong> foi construída para apresentação profissional na área da saúde,
-            com navegação clara, visual elegante e foco em autoridade, biografia e contato.
-          </p>
-          <ul class="portfolio-list">
-            <li>Projeto real publicado</li>
-            <li>Layout responsivo e visual refinado</li>
-            <li>Modelo que serve como referência de qualidade da Opervio</li>
-          </ul>
-          <div class="portfolio-actions">
-            <a class="btn btn-primary" href="https://iasmimfisio.com.br" target="_blank" rel="noopener">Abrir projeto</a>
-            <a class="btn btn-secondary" href="https://www.instagram.com/opervio_solutions/" target="_blank" rel="noopener">Ver Instagram</a>
+          <div class="section-head" style="margin-bottom:0"><span class="eyebrow">Portfólio</span><h2>Projetos com aplicação real e visual profissional</h2><p>Apresentação de cases e protótipos com foco em negócios reais, operações internas e presença digital de alto valor percebido.</p></div>
+          <div class="portfolio-list">
+            <div class="portfolio-point"><strong>Dra. Iasmim Borges</strong><p>Landing page profissional publicada, com identidade elegante, foco em autoridade e apresentação refinada para a área da saúde.</p></div>
+            <div class="portfolio-point"><strong>SCN Controle</strong><p>Aplicação web real para controle de vagas e veículos em condomínio, com tela de acesso, base operacional e potencial de expansão administrativa.</p></div>
+            <div class="portfolio-point"><strong>Projetos demo comerciais</strong><p>Conceitos premium para clínica odontológica e personal trainer, usados para demonstrar estética, posicionamento e conversão visual.</p></div>
           </div>
-        </div>
-        <div class="portfolio-preview reveal delay-1">
-          <div class="portfolio-frame glass">
-            <img src="assets/iasmim-preview.png" alt="Prévia do site da Dra. Iasmim Borges" />
-          </div>
+          <div class="hero-actions"><a class="btn" href="https://iasmimfisio.com.br" target="_blank" rel="noopener noreferrer">Ver case publicado</a><a class="btn btn-ghost" href="#contato">Quero um projeto assim</a></div>
         </div>
       </div>
     </section>
-
-    <section class="process section" id="processo">
+    <section id="vitrine" class="section">
       <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Processo</span>
-          <h2>Como funciona a entrega</h2>
-        </div>
-        <div class="timeline">
-          <div class="timeline-item glass reveal">
-            <span>01</span>
-            <h3>Entendimento do projeto</h3>
-            <p>Você apresenta sua necessidade, objetivo, público e referências visuais.</p>
-          </div>
-          <div class="timeline-item glass reveal delay-1">
-            <span>02</span>
-            <h3>Construção da solução</h3>
-            <p>A Opervio estrutura layout, conteúdo, tecnologia e experiência conforme o escopo definido.</p>
-          </div>
-          <div class="timeline-item glass reveal delay-2">
-            <span>03</span>
-            <h3>Publicação e suporte inicial</h3>
-            <p>O projeto é colocado no ar, com domínio, ajustes finais e suporte para os primeiros passos.</p>
-          </div>
+        <div class="section-head reveal"><span class="eyebrow">Vitrine visual</span><h2>Conceitos premium para apresentação comercial</h2><p>Essas artes demonstram como a Opervio consegue modelar páginas de diferentes nichos com linguagem visual própria, composição forte e foco em conversão.</p></div>
+        <div class="showcase-grid reveal">
+          <article class="shot-card glass">
+            <div class="shot-media"><img src="assets/demo-odonto.png" alt="Demo landing page odontológica" /></div>
+            <h3>Clínica odontológica</h3>
+            <p>Exemplo de landing page clara, elegante e comercial para área da saúde, com hero visual forte, destaques de serviços e CTA bem distribuída.</p>
+          </article>
+          <article class="shot-card glass">
+            <div class="shot-media"><img src="assets/demo-personal.png" alt="Demo landing page personal trainer" /></div>
+            <h3>Personal trainer premium</h3>
+            <p>Conceito com linguagem mais intensa, contraste forte e estética de performance para nichos que precisam transmitir energia e resultado.</p>
+          </article>
         </div>
       </div>
     </section>
-
-    <section class="about section" id="sobre">
-      <div class="container about-grid">
-        <div class="about-card glass reveal">
-          <span class="eyebrow">Sobre a Opervio</span>
-          <h2>Tecnologia acessível, prática e orientada a resolver problemas reais.</h2>
-          <p>
-            A <strong>Opervio Solutions</strong> é uma startup de tecnologia focada em desenvolver soluções digitais e softwares personalizados
-            para empresas e pessoas físicas que trabalham com clientes e precisam de mais presença digital, organização e eficiência.
-          </p>
-          <p>
-            Nosso objetivo é entregar ferramentas modernas, funcionais e com excelente custo-benefício — desde uma landing page profissional
-            até sistemas voltados para automação de tarefas, banco de dados, análise de dados, orçamentos e outras necessidades específicas.
-          </p>
-          <p>
-            Acreditamos que tecnologia de qualidade não precisa ser complicada nem inacessível. Por isso, cada projeto é pensado de forma direta,
-            clara e sob medida, sempre buscando unir visual profissional, utilidade prática e preço acessível.
-          </p>
-        </div>
-
-        <div class="about-side reveal delay-1">
-          <div class="about-mini glass">
-            <strong>Foco</strong>
-            <span>Presença digital, automação e softwares sob medida</span>
-          </div>
-          <div class="about-mini glass">
-            <strong>Perfil</strong>
-            <span>Moderno, startup, tecnológico e objetivo</span>
-          </div>
-          <div class="about-mini glass">
-            <strong>Contato oficial</strong>
-            <span>atendimento@opervio.com.br</span>
-          </div>
-        </div>
-      </div>
+    <section class="section">
+      <div class="container"><div class="metrics-grid reveal"><div class="metric-box glass"><strong>Mobile</strong><span>prioridade total na experiência visual pelo celular</span></div><div class="metric-box glass"><strong>Visual</strong><span>camadas, brilho, profundidade e acabamento premium</span></div><div class="metric-box glass"><strong>Estratégia</strong><span>seções desenhadas para gerar confiança e conversão</span></div><div class="metric-box glass"><strong>Evolução</strong><span>estrutura preparada para crescer junto com a marca</span></div></div></div>
     </section>
-
-    <section class="estimate section">
-      <div class="container estimate-grid">
-        <div class="section-head reveal">
-          <span class="eyebrow">Orçamento rápido</span>
-          <h2>Tenha uma estimativa inicial em segundos</h2>
-          <p>Use o simulador abaixo para visualizar um valor base conforme o tipo de serviço desejado.</p>
-        </div>
-
-        <div class="estimate-card glass reveal delay-1">
-          <label>
-            Serviço
-            <select id="serviceSelect">
-              <option value="650">Landing Page Profissional — R$ 650</option>
-              <option value="850">Presença Digital — R$ 850</option>
-              <option value="1500">Software / automação — a partir de R$ 1.500</option>
-            </select>
-          </label>
-
-          <label>
-            Precisa de urgência?
-            <select id="urgencySelect">
-              <option value="0">Prazo normal</option>
-              <option value="200">Sim, prioridade de execução</option>
-            </select>
-          </label>
-
-          <label>
-            Quantidade de páginas / módulos
-            <input id="moduleInput" type="range" min="1" max="5" value="1" />
-            <small id="moduleValue">1 unidade</small>
-          </label>
-
-          <div class="estimate-result">
-            <span>Estimativa inicial</span>
-            <strong id="estimateTotal">R$ 650</strong>
-            <p>Valor de referência. O orçamento final depende do escopo real do projeto.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact section" id="contato">
+    <section id="contato" class="section">
       <div class="container contact-grid">
-        <div class="contact-copy reveal">
-          <span class="eyebrow">Contato</span>
-          <h2>Vamos colocar sua estrutura digital em funcionamento</h2>
-          <p>Entre em contato para solicitar orçamento, apresentar sua ideia ou conversar sobre a melhor solução para o seu caso.</p>
-          <div class="contact-list">
-            <a href="mailto:atendimento@opervio.com.br">atendimento@opervio.com.br</a>
-            <a href="https://wa.me/5561981465900" target="_blank" rel="noopener">WhatsApp: (61) 98146-5900</a>
-            <a href="https://www.instagram.com/opervio_solutions/" target="_blank" rel="noopener">Instagram: @opervio_solutions</a>
-          </div>
-        </div>
-
-        <div class="contact-card glass reveal delay-1">
-          <h3>Solicite seu orçamento</h3>
-          <p>Escolha o canal de contato e fale diretamente com a Opervio.</p>
-          <div class="contact-actions">
-            <a class="btn btn-primary full" href="https://wa.me/5561981465900" target="_blank" rel="noopener">Falar no WhatsApp</a>
-            <a class="btn btn-secondary full" href="mailto:atendimento@opervio.com.br">Enviar e-mail</a>
-          </div>
-        </div>
+        <div class="contact-panel glass reveal"><span class="eyebrow">Contato</span><h2>Vamos elevar a presença digital da sua marca?</h2><p>Entre em contato para criar uma landing page, desenvolver um sistema web ou estruturar uma solução digital sob medida para seu negócio.</p><div class="contact-links"><a class="contact-link" href="mailto:atendimento@opervio.com.br"><span class="ico">✉</span><span>atendimento@opervio.com.br</span></a><a class="contact-link" href="https://wa.me/5561981465900" target="_blank" rel="noopener noreferrer"><span class="ico">◉</span><span>WhatsApp: (61) 98146-5900</span></a><a class="contact-link" href="https://www.instagram.com/opervio_solutions/" target="_blank" rel="noopener noreferrer"><span class="ico">◎</span><span>@opervio_solutions</span></a></div></div>
+        <div class="contact-box glass reveal"><span class="eyebrow">Chamada rápida</span><h3>Solicite um orçamento</h3><p>Atendimento inicial rápido para entender sua necessidade e propor a melhor solução.</p><div class="contact-stack"><a class="btn btn-full" href="https://wa.me/5561981465900?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Opervio%20e%20quero%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a><a class="btn btn-ghost btn-full" href="mailto:atendimento@opervio.com.br">Enviar e-mail</a></div></div>
       </div>
     </section>
   </main>
-
   <footer class="footer">
-    <div class="container footer-wrap">
-      <div>
-        <img class="footer-logo" src="assets/logo-opervio.png" alt="Opervio Solutions" />
-        <p>Soluções digitais modernas para profissionais e empresas.</p>
-      </div>
-      <div class="footer-links">
-        <a href="#servicos">Serviços</a>
-        <a href="#portfolio">Portfólio</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contato</a>
-      </div>
+    <div class="container footer-grid">
+      <div><a class="brand" href="#home"><img src="assets/logo-opervio.png" alt="Opervio Solutions" /></a><p class="footer-note">Soluções digitais modernas para profissionais e empresas que querem transmitir mais autoridade, organização e valor no digital.</p></div>
+      <nav class="footer-nav"><a href="#servicos">Serviços</a><a href="#processo">Processo</a><a href="#portfolio">Portfólio</a><a href="#vitrine">Vitrine</a><a href="#contato">Contato</a></nav>
     </div>
   </footer>
+  <a class="floating-wa" href="https://wa.me/5561981465900?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Opervio%20e%20quero%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">✆</a>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+    }, { threshold: 0.14 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  <a class="whatsapp-float" href="https://wa.me/5561981465900" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.54 2 2.08 6.46 2.08 11.95c0 1.76.46 3.48 1.34 5L2 22l5.21-1.37a9.92 9.92 0 0 0 4.82 1.23h.01c5.49 0 9.95-4.46 9.95-9.95 0-2.66-1.03-5.16-2.94-7Zm-7.02 15.26h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.09.81.83-3.01-.2-.31a8.23 8.23 0 0 1-1.27-4.38c0-4.55 3.7-8.25 8.25-8.25 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.84c0 4.55-3.7 8.25-8.25 8.25Zm4.53-6.17c-.25-.12-1.47-.72-1.7-.8-.23-.09-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.45-1.37-1.69-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.77-1.84-.2-.47-.4-.41-.56-.42h-.48c-.16 0-.43.06-.65.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.41 1.01 2.58.12.16 1.75 2.67 4.24 3.74.59.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
-  </a>
+    const visual = document.querySelector('.device-wrap');
+    if (visual && window.innerWidth > 900) {
+      window.addEventListener('mousemove', (e) => {
+        const x = (window.innerWidth / 2 - e.clientX) / 45;
+        const y = (window.innerHeight / 2 - e.clientY) / 55;
+        visual.style.transform = `perspective(1200px) rotateY(${-10 - x}deg) rotateX(${4 + y}deg)`;
+      });
+    }
 
-  <script src="script.js"></script>
+    const menuBtn = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.mobile-sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    const closeBtn = document.querySelector('.close-sidebar');
+    const sidebarLinks = document.querySelectorAll('.mobile-sidebar a');
+
+    function openSidebar(){ sidebar.classList.add('open'); overlay.classList.add('open'); sidebar.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; }
+    function closeSidebar(){ sidebar.classList.remove('open'); overlay.classList.remove('open'); sidebar.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
+
+    if (menuBtn) menuBtn.addEventListener('click', openSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+    sidebarLinks.forEach(link => link.addEventListener('click', closeSidebar));
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar(); });
+  </script>
 </body>
 </html>
