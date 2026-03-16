@@ -1,404 +1,752 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Opervio Solutions | Soluções digitais premium</title>
-  <meta name="description" content="Landing pages, software sob medida, automações e presença digital premium para profissionais e empresas." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#07111f;
-      --bg-2:#0d1b2f;
-      --panel:rgba(255,255,255,.08);
-      --panel-strong:rgba(255,255,255,.12);
-      --line:rgba(255,255,255,.12);
-      --text:#eef4ff;
-      --muted:#9fb0cb;
-      --brand:#7cb4ff;
-      --brand-2:#2c7fff;
-      --accent:#cde2ff;
-      --shadow:0 20px 80px rgba(0,0,0,.35);
-      --radius:24px;
-      --radius-sm:18px;
-      --max:1180px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 15% 20%, rgba(80,129,255,.24), transparent 25%),
-        radial-gradient(circle at 85% 15%, rgba(255,255,255,.08), transparent 18%),
-        radial-gradient(circle at 75% 75%, rgba(53,110,255,.18), transparent 26%),
-        linear-gradient(180deg, #09111f 0%, #081221 30%, #07101c 100%);
-      overflow-x:hidden;
-    }
-    body::before, body::after{
-      content:""; position:fixed; inset:auto; width:420px; height:420px; border-radius:50%; filter:blur(100px); opacity:.28; z-index:-2; pointer-events:none; animation: floatBlob 12s ease-in-out infinite;
-    }
-    body::before{top:-120px; left:-120px; background:#2f7eff}
-    body::after{bottom:-160px; right:-120px; background:#87b6ff; animation-delay:-4s}
-    @keyframes floatBlob{0%,100%{transform:translateY(0) translateX(0) scale(1)}50%{transform:translateY(18px) translateX(12px) scale(1.06)}}
-    .grid-overlay{position:fixed; inset:0; background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size:42px 42px; mask-image:linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.15)); pointer-events:none; z-index:-1}
-    img{max-width:100%; display:block}
-    a{text-decoration:none; color:inherit}
-    .container{width:min(calc(100% - 32px), var(--max)); margin:0 auto}
-    .section{padding:92px 0; position:relative}
-    .glass{background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.05)); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid var(--line); box-shadow:var(--shadow)}
-    .eyebrow{display:inline-flex; align-items:center; gap:10px; color:var(--accent); font-size:.78rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700; margin-bottom:18px}
-    .eyebrow::before{content:""; width:34px; height:1px; background:linear-gradient(90deg, transparent, var(--brand), transparent)}
-    h1,h2,h3,p{margin:0}
-    h1{font-size:clamp(2.4rem, 7vw, 5rem); line-height:.95; letter-spacing:-.045em}
-    h2{font-size:clamp(1.8rem,4.3vw,3.2rem); line-height:1.02; letter-spacing:-.03em}
-    h3{font-size:1.15rem; line-height:1.2}
-    p{color:var(--muted); line-height:1.7}
-    .site-header{position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); background:rgba(7,17,31,.46); border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav{height:78px; display:flex; align-items:center; justify-content:space-between; gap:20px}
-    .brand{display:flex; align-items:center; gap:14px; font-weight:800; letter-spacing:.04em}
-    .brand img{height:48px; width:auto; border-radius:12px}
-    .menu{display:flex; align-items:center; gap:26px}
-    .menu a{color:#dce7fb; font-weight:600; font-size:.95rem; opacity:.92}
-    .menu a:hover{opacity:1}
-    .menu-toggle{display:none; width:50px; height:50px; border-radius:16px; border:1px solid var(--line); background:rgba(255,255,255,.08); color:white; cursor:pointer; font-size:1.1rem}
-    .sidebar-overlay{position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(4px); opacity:0; pointer-events:none; transition:.25s ease; z-index:79}
-    .sidebar-overlay.open{opacity:1; pointer-events:auto}
-    .mobile-sidebar{position:fixed; top:0; right:-320px; width:min(86vw, 320px); height:100vh; padding:22px; background:rgba(7,17,31,.96); border-left:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow); transition:right .28s ease; z-index:80; display:flex; flex-direction:column; gap:14px}
-    .mobile-sidebar.open{right:0}
-    .mobile-sidebar .sidebar-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
-    .mobile-sidebar .sidebar-head img{height:42px; width:auto; border-radius:10px}
-    .close-sidebar{width:44px; height:44px; border-radius:14px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.05); color:white; font-size:1.2rem; cursor:pointer}
-    .mobile-sidebar a{padding:14px 16px; border-radius:16px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.04); color:#e8f0ff; font-weight:700}
-    .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:0 22px; border-radius:16px; border:1px solid rgba(255,255,255,.06); background:linear-gradient(135deg,var(--brand-2),#7eb5ff); color:#07111f; font-weight:800; letter-spacing:-.02em; box-shadow:0 16px 34px rgba(44,127,255,.28); transition:transform .25s ease, box-shadow .25s ease}
-    .btn:hover{transform:translateY(-2px); box-shadow:0 22px 40px rgba(44,127,255,.36)}
-    .btn-ghost{background:rgba(255,255,255,.04); color:var(--text); border:1px solid rgba(255,255,255,.12); box-shadow:none}
-    .btn-sm{min-height:44px; padding:0 18px; border-radius:14px}
-    .btn-full{width:100%}
-    .hero{padding:66px 0 36px}
-    .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:34px; align-items:center}
-    .hero-copy p{max-width:650px; font-size:1.05rem; margin-top:22px}
-    .gradient-title{background:linear-gradient(90deg, #ffffff 0%, #d8e7ff 48%, #89b7ff 100%); -webkit-background-clip:text; background-clip:text; color:transparent; display:inline}
-    .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-top:28px}
-    .hero-pills{display:flex; flex-wrap:wrap; gap:12px; margin-top:28px}
-    .pill{padding:12px 16px; border-radius:999px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.05); color:#dbe7ff; font-size:.9rem; font-weight:600}
-    .hero-proof{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; max-width:560px}
-    .proof-card{padding:16px; border-radius:18px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08)}
-    .proof-card strong{display:block; font-size:1.1rem; color:white; margin-bottom:4px}
-    .proof-card span{font-size:.84rem; color:var(--muted)}
-    .hero-visual{position:relative; min-height:620px; display:flex; align-items:center; justify-content:center}
-    .orbit{position:absolute; border:1px solid rgba(255,255,255,.08); border-radius:50%; animation:spin 24s linear infinite}
-    .orbit.orbit-a{width:540px; height:540px}.orbit.orbit-b{width:430px; height:430px; animation-duration:18s; animation-direction:reverse}.orbit.orbit-c{width:320px; height:320px; animation-duration:14s}
-    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-    .floating-tag{position:absolute; padding:14px 16px; border-radius:18px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.08); backdrop-filter:blur(18px); font-weight:700; color:#e6efff; box-shadow:var(--shadow); animation:levitate 6s ease-in-out infinite; z-index:2}
-    .floating-tag small{display:block; color:var(--muted); font-size:.74rem; font-weight:600; margin-bottom:6px}
-    .tag-1{top:46px; left:0}.tag-2{right:10px; top:130px; animation-delay:-2s}.tag-3{left:28px; bottom:40px; animation-delay:-3.5s}
-    @keyframes levitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    .device-wrap{width:min(100%, 520px); position:relative; z-index:3; transform:perspective(1200px) rotateY(-10deg) rotateX(4deg); transition:transform .4s ease}
-    .device-wrap:hover{transform:perspective(1200px) rotateY(-4deg) rotateX(1deg) translateY(-4px)}
-    .laptop{border-radius:28px; padding:16px; background:linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.08)); border:1px solid rgba(255,255,255,.14); box-shadow:0 28px 90px rgba(0,0,0,.45)}
-    .screen{border-radius:22px; overflow:hidden; background:linear-gradient(180deg,#0f1c32,#0b1526); border:1px solid rgba(255,255,255,.08); min-height:360px; position:relative}
-    .screen-top{height:50px; display:flex; align-items:center; justify-content:space-between; padding:0 18px; background:rgba(255,255,255,.04); border-bottom:1px solid rgba(255,255,255,.06)}
-    .dots{display:flex; gap:8px}.dots span{width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.3)}
-    .screen-label{font-size:.78rem; color:#dce7fb; letter-spacing:.14em; text-transform:uppercase; font-weight:700}
-    .screen-content{padding:22px; display:grid; gap:18px}
-    .mockup-hero{display:grid; grid-template-columns:1.1fr .9fr; gap:18px}
-    .mock-block,.mock-chart,.mock-strip{border-radius:18px; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04))}
-    .mock-block{padding:18px; min-height:168px}
-    .line,.phone-line{height:10px; border-radius:999px; background:linear-gradient(90deg, rgba(255,255,255,.7), rgba(124,180,255,.38)); margin-bottom:10px; opacity:.9}
-    .line:last-child,.phone-line:last-child{margin-bottom:0}
-    .w-90{width:90%}.w-70{width:70%}.w-55{width:55%}.w-40{width:40%}
-    .mock-chart{min-height:168px; padding:18px; display:flex; align-items:flex-end; gap:12px}
-    .bar{flex:1; border-radius:12px 12px 6px 6px; background:linear-gradient(180deg, #a7ccff, #2b7dff); box-shadow:0 12px 24px rgba(43,125,255,.18); animation:rise 1.2s ease forwards; transform-origin:bottom}
-    .bar:nth-child(1){height:38%}.bar:nth-child(2){height:68%}.bar:nth-child(3){height:52%}.bar:nth-child(4){height:82%}.bar:nth-child(5){height:63%}
-    @keyframes rise{from{transform:scaleY(.1); opacity:.3}to{transform:scaleY(1); opacity:1}}
-    .mock-strip{padding:18px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
-    .mini-stat{padding:14px; border-radius:16px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06)}
-    .mini-stat strong{display:block; font-size:1rem; margin-bottom:6px}.mini-stat span{font-size:.8rem; color:var(--muted)}
-    .laptop-base{width:84%; height:18px; margin:0 auto; border-radius:0 0 20px 20px; background:linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,.08)); box-shadow:0 18px 50px rgba(0,0,0,.34)}
-    .phone{position:absolute; right:-30px; bottom:-10px; width:210px; border-radius:34px; padding:10px; background:linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,.07)); border:1px solid rgba(255,255,255,.16); box-shadow:0 30px 60px rgba(0,0,0,.4); z-index:5; animation:phoneFloat 6s ease-in-out infinite}
-    @keyframes phoneFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-    .phone-screen{min-height:370px; border-radius:26px; overflow:hidden; background:linear-gradient(180deg, #f4f7fb, #dfe6f0); color:#10203d; padding:18px}
-    .phone-notch{width:76px; height:10px; border-radius:999px; background:#172742; margin:2px auto 16px; opacity:.85}
-    .phone-card{background:white; border-radius:18px; padding:16px; box-shadow:0 10px 24px rgba(0,0,0,.08); margin-bottom:12px}
-    .phone-card strong{display:block; font-size:1rem; margin-bottom:10px}
-    .phone-btn{height:42px; border-radius:14px; background:#09152b; color:white; display:flex; align-items:center; justify-content:center; font-weight:800; margin-top:14px}
-    .trusted-wrap{display:grid; grid-template-columns:repeat(5,1fr); gap:16px; padding:18px; border-radius:22px}
-    .trusted-item{text-align:center; padding:18px 14px; border-radius:18px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.04); font-weight:700; color:#dce7fb}
-    .section-head{max-width:720px; margin-bottom:28px}.section-head p{margin-top:14px}
-    .services-grid,.portfolio-grid,.adv-grid,.process-grid,.metrics-grid,.contact-grid,.footer-grid,.showcase-grid{display:grid; gap:20px}
-    .services-grid{grid-template-columns:repeat(3,1fr)}
-    .card{padding:26px; border-radius:24px; position:relative; overflow:hidden; transition:transform .25s ease, border-color .25s ease}
-    .card:hover{transform:translateY(-6px); border-color:rgba(124,180,255,.28)}
-    .card::before{content:""; position:absolute; inset:auto -70px -70px auto; width:170px; height:170px; border-radius:50%; background:radial-gradient(circle, rgba(124,180,255,.18), transparent 65%); pointer-events:none}
-    .card-icon{width:54px; height:54px; border-radius:18px; display:grid; place-items:center; background:linear-gradient(135deg, rgba(124,180,255,.24), rgba(255,255,255,.09)); border:1px solid rgba(255,255,255,.1); margin-bottom:16px; font-size:1.3rem}
-    .card h3{margin-bottom:10px}.card p{margin-bottom:16px}
-    .list{display:grid; gap:10px}
-    .list span{display:flex; align-items:flex-start; gap:10px; color:#d9e6fb; font-size:.94rem}
-    .list span::before{content:"✦"; color:var(--brand); font-size:.9rem; margin-top:2px}
-    .price{display:block; margin-top:20px; font-size:1.1rem; font-weight:800; color:white}
-    .featured{outline:1px solid rgba(124,180,255,.26); box-shadow:0 20px 70px rgba(44,127,255,.14)}
-    .process-grid{grid-template-columns:repeat(3,1fr)}
-    .step{padding:26px; border-radius:24px; position:relative}
-    .step-number{width:44px; height:44px; border-radius:14px; display:grid; place-items:center; font-weight:800; background:linear-gradient(135deg,#7cb4ff,#d6e8ff); color:#07111f; margin-bottom:16px}
-    .adv-grid{grid-template-columns:repeat(4,1fr)}
-    .adv{padding:22px; border-radius:22px; text-align:left}
-    .adv strong{display:block; margin-bottom:8px; font-size:1rem}.adv span{color:var(--muted); font-size:.92rem; line-height:1.6}
-    .portfolio-grid{grid-template-columns:1.08fr .92fr; align-items:center}
-    .portfolio-visual{padding:18px; border-radius:28px; position:relative; min-height:560px}
-    .portfolio-stack{position:relative; width:100%; height:100%; min-height:520px}
-    .portfolio-browser,.portfolio-phone,.floating-mini{position:absolute; border:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.05)); backdrop-filter:blur(18px); box-shadow:var(--shadow)}
-    .portfolio-browser{inset:0 50px 40px 0; border-radius:28px; overflow:hidden; padding:14px}
-    .browser-shell{width:100%; height:100%; border-radius:22px; overflow:hidden; background:linear-gradient(180deg,#eef3fb,#dfe7f2)}
-    .browser-top{height:54px; background:#ffffffc9; display:flex; align-items:center; gap:14px; padding:0 18px; border-bottom:1px solid rgba(11,21,38,.08)}
-    .browser-pill{flex:1; height:16px; border-radius:999px; background:#dbe6f5}
-    .browser-content{padding:14px; display:grid; grid-template-columns:1fr; gap:16px; height:calc(100% - 54px); background:linear-gradient(180deg,#eef3fb,#dfe7f2)}
-    .site-preview,.preview-shot{border-radius:18px; background:white; box-shadow:0 10px 22px rgba(0,0,0,.06); overflow:hidden}
-    .site-preview{height:100%; display:flex; align-items:center; justify-content:center}
-    .site-preview img{width:100%; height:100%; object-fit:cover; object-position:top center}
-    .portfolio-phone{width:230px; right:0; bottom:0; border-radius:34px; padding:10px; transform:rotate(5deg)}
-    .portfolio-phone .phone-screen{min-height:420px; padding:0; background:#dfe5ee}
-    .portfolio-phone .phone-screen img{width:100%; height:100%; min-height:420px; object-fit:cover; object-position:center top}
-    .floating-mini{padding:16px; border-radius:22px; left:28px; bottom:10px; min-width:190px; animation:levitate 6s ease-in-out infinite}
-    .floating-mini strong{display:block; font-size:1rem; margin-bottom:6px}.floating-mini span{font-size:.88rem; color:var(--muted)}
-    .portfolio-copy{display:grid; gap:18px; align-content:start}
-    .portfolio-list{display:grid; gap:12px}
-    .portfolio-point{padding:16px 18px; border-radius:18px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.04)}
-    .portfolio-point strong{display:block; margin-bottom:6px}
-    .showcase-grid{grid-template-columns:repeat(2,1fr)}
-    .shot-card{padding:16px; border-radius:24px; overflow:hidden}
-    .shot-media{border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.08); aspect-ratio:16/10; background:#09111f}
-    .shot-media img{width:100%; height:100%; object-fit:cover; object-position:top center}
-    .shot-card h3{margin:16px 0 8px}
-    .metrics-grid{grid-template-columns:repeat(4,1fr)}
-    .metric-box{padding:24px; border-radius:24px; text-align:center}
-    .metric-box strong{display:block; font-size:1.9rem; margin-bottom:8px}.metric-box span{color:var(--muted); font-size:.92rem}
-    .contact-grid{grid-template-columns:1fr .9fr; align-items:stretch}
-    .contact-panel,.contact-box{padding:28px; border-radius:28px}
-    .contact-links{display:grid; gap:14px; margin-top:22px}
-    .contact-link{display:flex; align-items:center; gap:14px; padding:16px 18px; border-radius:18px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08)}
-    .contact-link .ico{width:40px; height:40px; border-radius:14px; display:grid; place-items:center; background:rgba(124,180,255,.18); border:1px solid rgba(255,255,255,.08)}
-    .contact-box p{margin-top:10px; margin-bottom:20px}.contact-stack{display:grid; gap:12px}
-    .footer{padding:30px 0 54px}.footer-grid{grid-template-columns:1fr auto; align-items:center}
-    .footer-note{color:var(--muted); max-width:520px}.footer-nav{display:flex; gap:18px; flex-wrap:wrap; justify-content:flex-end}.footer-nav a{color:#dbe7ff}
-    .floating-wa{position:fixed; right:20px; bottom:20px; width:62px; height:62px; border-radius:20px; display:grid; place-items:center; background:linear-gradient(135deg,#25d366,#80f2a7); color:#062111; font-size:1.35rem; font-weight:900; box-shadow:0 18px 44px rgba(37,211,102,.28); z-index:70}
-    .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease}.reveal.is-visible{opacity:1; transform:none}
-    @media (max-width:1080px){.hero-grid,.portfolio-grid,.contact-grid{grid-template-columns:1fr}.services-grid{grid-template-columns:repeat(2,1fr)}.adv-grid{grid-template-columns:repeat(2,1fr)}.metrics-grid{grid-template-columns:repeat(2,1fr)}.trusted-wrap{grid-template-columns:repeat(3,1fr)}.hero-visual{min-height:560px}.device-wrap{margin:0 auto}.portfolio-visual{min-height:520px}.showcase-grid{grid-template-columns:1fr}}
-    @media (max-width:760px){.section{padding:74px 0}.nav{height:72px}.menu{display:none}.menu-toggle{display:inline-grid; place-items:center}.hero{padding:32px 0 24px}.hero-grid{gap:28px}.hero-proof{grid-template-columns:1fr 1fr}.services-grid,.process-grid,.adv-grid,.metrics-grid,.trusted-wrap{grid-template-columns:1fr}.hero-visual{min-height:480px}.orbit.orbit-a{width:360px;height:360px}.orbit.orbit-b{width:280px;height:280px}.orbit.orbit-c{width:210px;height:210px}.tag-1,.tag-2,.tag-3{display:none}.device-wrap{transform:none;width:100%}.device-wrap:hover{transform:none}.phone{width:160px;right:-4px;bottom:-18px}.phone-screen{min-height:300px}.mockup-hero,.mock-strip{grid-template-columns:1fr}.portfolio-browser{inset:0 14px 70px 0}.portfolio-phone{width:170px}.floating-mini{left:16px;right:16px;bottom:-14px;min-width:auto}.footer-grid{grid-template-columns:1fr;gap:20px}.footer-nav{justify-content:flex-start}.floating-wa{width:58px;height:58px}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opervio Solutions | Sites e Software Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --bg: #020617;
+            --card-bg: rgba(30, 41, 59, 0.6);
+            --border: rgba(148, 163, 184, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Gradient Background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                var(--bg);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+            filter: brightness(1.1);
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text);
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 1.5rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            -webkit-text-fill-color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Stats */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 1.5rem;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Services */
+        .services {
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Portfolio Carousel */
+        .portfolio {
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .carousel-wrapper {
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            padding: 0 0.5rem;
+        }
+
+        .portfolio-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: top;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-tag {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Carousel Controls */
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .carousel-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0.3;
+        }
+
+        .dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background: var(--accent);
+            opacity: 1;
+        }
+
+        /* Process */
+        .process-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .step-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-logo {
+            height: 35px;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .social-icon:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: row;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .portfolio-image {
+                height: 350px;
+            }
+
+            .process-step {
+                align-items: center;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .carousel-slide {
+                min-width: 50%;
+            }
+
+            .portfolio-image {
+                height: 400px;
+            }
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-  <div class="grid-overlay"></div>
-  <div class="sidebar-overlay"></div>
-  <aside class="mobile-sidebar" aria-hidden="true">
-    <div class="sidebar-head">
-      <img src="assets/logo-opervio.png" alt="Opervio Solutions" />
-      <button class="close-sidebar" aria-label="Fechar menu">✕</button>
-    </div>
-    <a href="#home">Home</a>
-    <a href="#servicos">Serviços</a>
-    <a href="#processo">Processo</a>
-    <a href="#portfolio">Portfólio</a>
-    <a href="#vitrine">Vitrine</a>
-    <a href="#contato">Solicitar orçamento</a>
-  </aside>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#home" aria-label="Opervio Solutions">
-        <img src="assets/logo-opervio.png" alt="Opervio Solutions" />
-      </a>
-      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
-      <nav class="menu">
-        <a href="#home">Home</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#processo">Processo</a>
-        <a href="#portfolio">Portfólio</a>
-        <a href="#vitrine">Vitrine</a>
-        <a href="#contato" class="btn btn-sm">Solicitar orçamento</a>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <section id="home" class="hero section">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <span class="eyebrow">Startup de tecnologia · presença digital · software</span>
-          <h1><span class="gradient-title">Transformamos ideias em soluções digitais profissionais.</span></h1>
-          <p>A Opervio cria landing pages, sistemas personalizados, automações e presença digital com visual premium, foco em conversão e experiência impecável no celular.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#contato">Solicitar orçamento</a>
-            <a class="btn btn-ghost" href="#portfolio">Ver projetos</a>
-          </div>
-          <div class="hero-pills">
-            <div class="pill">Landing pages premium</div>
-            <div class="pill">Softwares sob medida</div>
-            <div class="pill">Aplicações web reais</div>
-          </div>
-          <div class="hero-proof">
-            <div class="proof-card"><strong>Visual premium</strong><span>design moderno com percepção de valor</span></div>
-            <div class="proof-card"><strong>Foco mobile</strong><span>experiência pensada para celular</span></div>
-            <div class="proof-card"><strong>Entrega real</strong><span>sites e software com aplicação prática</span></div>
-          </div>
+    <div class="gradient-bg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <img src="assets/logo-opervio.png" alt="Opervio Solutions" class="logo">
+            <div class="nav-links">
+                <a href="#servicos">Serviços</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#processo">Processo</a>
+                <a href="https://wa.me/5561981465900" class="nav-cta">Falar no WhatsApp</a>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <div class="hero-visual reveal">
-          <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div>
-          <div class="floating-tag tag-1"><small>Produto</small>Landing pages que passam autoridade</div>
-          <div class="floating-tag tag-2"><small>Software real</small>Aplicações web para operações do cliente</div>
-          <div class="floating-tag tag-3"><small>Experiência</small>Visual forte para desktop e mobile</div>
-          <div class="device-wrap">
-            <div class="laptop">
-              <div class="screen">
-                <div class="screen-top"><div class="dots"><span></span><span></span><span></span></div><div class="screen-label">Opervio Preview</div></div>
-                <div class="screen-content">
-                  <div class="mockup-hero">
-                    <div class="mock-block"><div class="line w-55"></div><div class="line w-90"></div><div class="line w-70"></div><div class="line w-40"></div></div>
-                    <div class="mock-chart"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-                  </div>
-                  <div class="mock-strip">
-                    <div class="mini-stat"><strong>OnePage</strong><span>presença digital profissional</span></div>
-                    <div class="mini-stat"><strong>Software</strong><span>controle, dados e produtividade</span></div>
-                    <div class="mini-stat"><strong>Automação</strong><span>menos tarefas manuais</span></div>
-                  </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🚀</span>
+                <span>Soluções digitais premium</span>
+            </div>
+            <h1>
+                Transformamos ideias em<br>
+                <span>soluções digitais</span> profissionais
+            </h1>
+            <p>
+                Criamos landing pages, sistemas web e automações com design premium, 
+                foco em conversão e experiência impecável no celular. Sua presença 
+                digital com a qualidade de uma empresa grande.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/5561981465900" class="btn-primary">
+                    Solicitar orçamento
+                    <span>→</span>
+                </a>
+                <a href="#portfolio" class="btn-secondary">Ver projetos</a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Projetos entregues</p>
                 </div>
-              </div>
-              <div class="laptop-base"></div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Foco mobile</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24h</h3>
+                    <p>Resposta rápida</p>
+                </div>
             </div>
-            <div class="phone">
-              <div class="phone-screen">
-                <div class="phone-notch"></div>
-                <div class="phone-card"><strong>Opervio Mobile</strong><div class="phone-line" style="width:82%"></div><div class="phone-line" style="width:68%"></div><div class="phone-line" style="width:54%"></div><div class="phone-btn">Solicitar orçamento</div></div>
-                <div class="phone-card"><div class="phone-line" style="width:66%"></div><div class="phone-line" style="width:88%"></div><div class="phone-line" style="width:48%"></div></div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
-    <section class="section">
-      <div class="container"><div class="trusted-wrap glass reveal"><div class="trusted-item">Landing Pages</div><div class="trusted-item">Sites Profissionais</div><div class="trusted-item">Softwares Web</div><div class="trusted-item">Automação</div><div class="trusted-item">Experiência Mobile</div></div></div>
-    </section>
-    <section id="servicos" class="section">
-      <div class="container">
-        <div class="section-head reveal"><span class="eyebrow">Serviços</span><h2>O que a Opervio entrega com padrão premium</h2><p>Projetos com estética forte, estrutura estratégica e foco em fazer o cliente parecer mais profissional e mais valioso no digital.</p></div>
-        <div class="services-grid reveal">
-          <article class="card glass"><div class="card-icon">✦</div><h3>Landing pages premium</h3><p>Páginas pensadas para causar impacto imediato, apresentar seu serviço com clareza e converter no celular.</p><div class="list"><span>Hero visual com mockups e chamadas fortes</span><span>Design responsivo e elegante</span><span>Integração com WhatsApp, Instagram e e-mail</span><span>Publicação em domínio próprio</span></div><span class="price">OnePage Opervio</span></article>
-          <article class="card glass featured"><div class="card-icon">⚡</div><h3>Presença digital completa</h3><p>Para quem quer aparecer de forma séria e profissional desde o primeiro contato com o cliente.</p><div class="list"><span>Landing page + e-mail profissional</span><span>Configuração de domínio e DNS</span><span>Estrutura visual premium</span><span>Base pronta para expansão futura</span></div><span class="price">Pacote mais procurado</span></article>
-          <article class="card glass"><div class="card-icon">◉</div><h3>Softwares sob medida</h3><p>Sistemas web e soluções personalizadas para controle, cadastros, relatórios, banco de dados e automações.</p><div class="list"><span>Painéis administrativos</span><span>Fluxos de cadastro e consulta</span><span>Relatórios e organização de dados</span><span>Soluções adaptadas à operação do cliente</span></div><span class="price">Projeto personalizado</span></article>
-        </div>
-      </div>
-    </section>
-    <section id="processo" class="section">
-      <div class="container">
-        <div class="section-head reveal"><span class="eyebrow">Processo</span><h2>Como a Opervio transforma uma ideia em produto</h2><p>Um fluxo simples, objetivo e profissional para tirar o projeto do papel com clareza em cada etapa.</p></div>
-        <div class="process-grid reveal">
-          <div class="step glass"><div class="step-number">1</div><h3>Entendimento estratégico</h3><p>Mapeamos o objetivo do projeto, público, fluxo ideal e o tipo de solução que faz mais sentido para o cenário real.</p></div>
-          <div class="step glass"><div class="step-number">2</div><h3>Design + estrutura</h3><p>Construímos o visual, definimos a arquitetura da página ou sistema e desenhamos uma experiência premium para desktop e mobile.</p></div>
-          <div class="step glass"><div class="step-number">3</div><h3>Entrega e publicação</h3><p>Publicamos, testamos, conectamos domínio e deixamos a solução pronta para uso real ou evolução futura.</p></div>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal"><span class="eyebrow">Diferenciais</span><h2>Tecnologia prática com imagem de empresa grande</h2><p>O objetivo não é apenas entregar um site bonito, mas criar uma percepção de qualidade que aumenta confiança, autoridade e valor percebido.</p></div>
-        <div class="adv-grid reveal">
-          <div class="adv glass"><strong>Visual de alto nível</strong><span>Seções bem compostas, efeitos sutis, profundidade visual e acabamento premium.</span></div>
-          <div class="adv glass"><strong>Experiência mobile first</strong><span>Estrutura desenhada para quem acessa pelo celular e decide rápido.</span></div>
-          <div class="adv glass"><strong>Clareza comercial</strong><span>Mensagem objetiva, hierarquia visual forte e CTA bem posicionada.</span></div>
-          <div class="adv glass"><strong>Base para crescer</strong><span>Páginas e sistemas já pensados para receber novas seções, módulos e integrações.</span></div>
-        </div>
-      </div>
-    </section>
-    <section id="portfolio" class="section">
-      <div class="container portfolio-grid">
-        <div class="portfolio-visual glass reveal">
-          <div class="portfolio-stack">
-            <div class="portfolio-browser">
-              <div class="browser-shell">
-                <div class="browser-top"><div class="dots"><span></span><span></span><span></span></div><div class="browser-pill"></div></div>
-                <div class="browser-content"><div class="site-preview"><img src="assets/portfolio-iasmim.png" alt="Projeto Dra. Iasmim Borges" /></div></div>
-              </div>
-            </div>
-            <div class="portfolio-phone"><div class="phone-screen"><img src="assets/scn-controle.png" alt="Sistema SCN Controle" /></div></div>
-            <div class="floating-mini"><strong>Projetos reais e demos premium</strong><span>Landing pages profissionais, sistema web real para condomínio e conceitos comerciais de alto impacto visual.</span></div>
-          </div>
-        </div>
-        <div class="portfolio-copy reveal">
-          <div class="section-head" style="margin-bottom:0"><span class="eyebrow">Portfólio</span><h2>Projetos com aplicação real e visual profissional</h2><p>Apresentação de cases e protótipos com foco em negócios reais, operações internas e presença digital de alto valor percebido.</p></div>
-          <div class="portfolio-list">
-            <div class="portfolio-point"><strong>Dra. Iasmim Borges</strong><p>Landing page profissional publicada, com identidade elegante, foco em autoridade e apresentação refinada para a área da saúde.</p></div>
-            <div class="portfolio-point"><strong>SCN Controle</strong><p>Aplicação web real para controle de vagas e veículos em condomínio, com tela de acesso, base operacional e potencial de expansão administrativa.</p></div>
-            <div class="portfolio-point"><strong>Projetos demo comerciais</strong><p>Conceitos premium para clínica odontológica e personal trainer, usados para demonstrar estética, posicionamento e conversão visual.</p></div>
-          </div>
-          <div class="hero-actions"><a class="btn" href="https://iasmimfisio.com.br" target="_blank" rel="noopener noreferrer">Ver case publicado</a><a class="btn btn-ghost" href="#contato">Quero um projeto assim</a></div>
-        </div>
-      </div>
-    </section>
-    <section id="vitrine" class="section">
-      <div class="container">
-        <div class="section-head reveal"><span class="eyebrow">Vitrine visual</span><h2>Conceitos premium para apresentação comercial</h2><p>Essas artes demonstram como a Opervio consegue modelar páginas de diferentes nichos com linguagem visual própria, composição forte e foco em conversão.</p></div>
-        <div class="showcase-grid reveal">
-          <article class="shot-card glass">
-            <div class="shot-media"><img src="assets/demo-odonto.png" alt="Demo landing page odontológica" /></div>
-            <h3>Clínica odontológica</h3>
-            <p>Exemplo de landing page clara, elegante e comercial para área da saúde, com hero visual forte, destaques de serviços e CTA bem distribuída.</p>
-          </article>
-          <article class="shot-card glass">
-            <div class="shot-media"><img src="assets/demo-personal.png" alt="Demo landing page personal trainer" /></div>
-            <h3>Personal trainer premium</h3>
-            <p>Conceito com linguagem mais intensa, contraste forte e estética de performance para nichos que precisam transmitir energia e resultado.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container"><div class="metrics-grid reveal"><div class="metric-box glass"><strong>Mobile</strong><span>prioridade total na experiência visual pelo celular</span></div><div class="metric-box glass"><strong>Visual</strong><span>camadas, brilho, profundidade e acabamento premium</span></div><div class="metric-box glass"><strong>Estratégia</strong><span>seções desenhadas para gerar confiança e conversão</span></div><div class="metric-box glass"><strong>Evolução</strong><span>estrutura preparada para crescer junto com a marca</span></div></div></div>
-    </section>
-    <section id="contato" class="section">
-      <div class="container contact-grid">
-        <div class="contact-panel glass reveal"><span class="eyebrow">Contato</span><h2>Vamos elevar a presença digital da sua marca?</h2><p>Entre em contato para criar uma landing page, desenvolver um sistema web ou estruturar uma solução digital sob medida para seu negócio.</p><div class="contact-links"><a class="contact-link" href="mailto:atendimento@opervio.com.br"><span class="ico">✉</span><span>atendimento@opervio.com.br</span></a><a class="contact-link" href="https://wa.me/5561981465900" target="_blank" rel="noopener noreferrer"><span class="ico">◉</span><span>WhatsApp: (61) 98146-5900</span></a><a class="contact-link" href="https://www.instagram.com/opervio_solutions/" target="_blank" rel="noopener noreferrer"><span class="ico">◎</span><span>@opervio_solutions</span></a></div></div>
-        <div class="contact-box glass reveal"><span class="eyebrow">Chamada rápida</span><h3>Solicite um orçamento</h3><p>Atendimento inicial rápido para entender sua necessidade e propor a melhor solução.</p><div class="contact-stack"><a class="btn btn-full" href="https://wa.me/5561981465900?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Opervio%20e%20quero%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a><a class="btn btn-ghost btn-full" href="mailto:atendimento@opervio.com.br">Enviar e-mail</a></div></div>
-      </div>
-    </section>
-  </main>
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div><a class="brand" href="#home"><img src="assets/logo-opervio.png" alt="Opervio Solutions" /></a><p class="footer-note">Soluções digitais modernas para profissionais e empresas que querem transmitir mais autoridade, organização e valor no digital.</p></div>
-      <nav class="footer-nav"><a href="#servicos">Serviços</a><a href="#processo">Processo</a><a href="#portfolio">Portfólio</a><a href="#vitrine">Vitrine</a><a href="#contato">Contato</a></nav>
-    </div>
-  </footer>
-  <a class="floating-wa" href="https://wa.me/5561981465900?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Opervio%20e%20quero%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">✆</a>
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
-    }, { threshold: 0.14 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    const visual = document.querySelector('.device-wrap');
-    if (visual && window.innerWidth > 900) {
-      window.addEventListener('mousemove', (e) => {
-        const x = (window.innerWidth / 2 - e.clientX) / 45;
-        const y = (window.innerHeight / 2 - e.clientY) / 55;
-        visual.style.transform = `perspective(1200px) rotateY(${-10 - x}deg) rotateX(${4 + y}deg)`;
-      });
-    }
-
-    const menuBtn = document.querySelector('.menu-toggle');
-    const sidebar = document.querySelector('.mobile-sidebar');
-    const overlay = document.querySelector('.sidebar-overlay');
-    const closeBtn = document.querySelector('.close-sidebar');
-    const sidebarLinks = document.querySelectorAll('.mobile-sidebar a');
-
-    function openSidebar(){ sidebar.classList.add('open'); overlay.classList.add('open'); sidebar.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; }
-    function closeSidebar(){ sidebar.classList.remove('open'); overlay.classList.remove('open'); sidebar.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
-
-    if (menuBtn) menuBtn.addEventListener('click', openSidebar);
-    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
-    if (overlay) overlay.addEventListener('click', closeSidebar);
-    sidebarLinks.forEach(link => link.addEventListener('click', closeSidebar));
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar(); });
-  </script>
-</body>
-</html>
+    <!-- Services -->
+    <section class="services" id="servicos">
+        <div class="section-header reveal">
+            <h2>O que a Opervio entrega</h2>
+            <p>Projetos com estética forte, estrutura estratégica e foco em fazer seu ne
