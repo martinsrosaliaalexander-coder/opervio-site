@@ -1,15 +1,652 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Opervio Solutions | Site</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23000000'/><circle cx='16' cy='16' r='10' fill='none' stroke='%2300FF00' stroke-width='3'/></svg>" />
-    <script type="module" crossorigin src="/assets/index-BY9l1nRU.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BGkl0wvV.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opervio Solutions | Estúdio de sites e sistemas web</title>
+  <meta name="description" content="Estúdio digital: landing pages, sites institucionais, sistemas web sob medida e automações com design premium e foco em conversão." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#08090b;
+      --bg-2:#0b0c0f;
+      --card:#0f1013;
+      --card-2:#15161b;
+      --line:rgba(255,255,255,.08);
+      --line-2:rgba(255,255,255,.15);
+      --text:#f4f5f7;
+      --muted:#a0a4ae;
+      --faint:#71747d;
+      --accent:#6ea0ff;
+      --accent-2:#3f7bff;
+      --accent-ink:#07142e;
+      --radius:12px;
+      --radius-lg:20px;
+      --max:1180px;
+      --mono:ui-monospace,'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    img{max-width:100%; display:block}
+    a{text-decoration:none; color:inherit}
+    svg{display:block}
+    ::selection{background:rgba(110,160,255,.28)}
+    .container{width:min(calc(100% - 40px), var(--max)); margin:0 auto}
+    .section{padding:104px 0; position:relative}
+    .section + .section{border-top:1px solid var(--line)}
 
+    /* Micro-label */
+    .label{display:inline-flex; align-items:center; gap:12px; font-family:var(--mono); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); font-weight:500}
+    .label::before{content:""; width:26px; height:1px; background:var(--line-2)}
+
+    h1,h2,h3,h4,p{margin:0}
+    h1{font-size:clamp(2.5rem,5.4vw,4.1rem); line-height:1.03; letter-spacing:-.035em; font-weight:700}
+    h2{font-size:clamp(1.75rem,3.4vw,2.6rem); line-height:1.08; letter-spacing:-.03em; font-weight:700}
+    h3{font-size:1.12rem; line-height:1.35; letter-spacing:-.01em; font-weight:600}
+    p{color:var(--muted); line-height:1.7}
+    .lead{font-size:1.05rem; max-width:600px; margin-top:16px}
+
+    /* Header */
+    .site-header{position:sticky; top:0; z-index:50; background:rgba(8,9,11,.72); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line)}
+    .nav{height:70px; display:flex; align-items:center; justify-content:space-between; gap:20px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:-.01em; font-size:1.02rem}
+    .brand img{height:34px; width:auto; border-radius:8px}
+    .menu{display:flex; align-items:center; gap:30px}
+    .menu a{color:var(--muted); font-weight:500; font-size:.92rem; transition:color .2s}
+    .menu a:hover{color:var(--text)}
+    .menu-toggle{display:none; width:44px; height:44px; border-radius:11px; border:1px solid var(--line-2); background:transparent; color:var(--text); cursor:pointer; align-items:center; justify-content:center}
+    .sidebar-overlay{position:fixed; inset:0; background:rgba(0,0,0,.55); opacity:0; pointer-events:none; transition:.25s; z-index:79}
+    .sidebar-overlay.open{opacity:1; pointer-events:auto}
+    .mobile-sidebar{position:fixed; top:0; right:-320px; width:min(84vw,320px); height:100vh; padding:22px; background:var(--bg-2); border-left:1px solid var(--line); transition:right .3s cubic-bezier(.4,0,.2,1); z-index:80; display:flex; flex-direction:column; gap:8px}
+    .mobile-sidebar.open{right:0}
+    .sidebar-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px}
+    .sidebar-head img{height:32px; width:auto; border-radius:8px}
+    .close-sidebar{width:42px; height:42px; border-radius:11px; border:1px solid var(--line-2); background:transparent; color:var(--text); cursor:pointer}
+    .mobile-sidebar a{padding:13px 14px; border-radius:12px; color:var(--muted); font-weight:500; transition:.2s}
+    .mobile-sidebar a:hover{background:var(--card); color:var(--text)}
+
+    /* Buttons */
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:9px; height:48px; padding:0 22px; border-radius:11px; font-weight:600; font-size:.94rem; letter-spacing:-.01em; cursor:pointer; transition:transform .2s, background .2s, border-color .2s; border:1px solid transparent}
+    .btn svg{width:17px; height:17px; stroke-width:2}
+    .btn-primary{background:var(--text); color:#0a0b0d}
+    .btn-primary:hover{background:#fff; transform:translateY(-1px)}
+    .btn-accent{background:linear-gradient(180deg,var(--accent),var(--accent-2)); color:#04122e}
+    .btn-accent:hover{transform:translateY(-1px); box-shadow:0 10px 26px rgba(63,123,255,.28)}
+    .btn-ghost{background:transparent; color:var(--text); border-color:var(--line-2)}
+    .btn-ghost:hover{background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.28)}
+    .btn-sm{height:40px; padding:0 16px; font-size:.9rem; border-radius:10px}
+    .btn-full{width:100%}
+
+    /* Hero */
+    .hero{padding:84px 0 96px}
+    .hero-grid{display:grid; grid-template-columns:1.02fr .98fr; gap:56px; align-items:center}
+    .hero h1{margin-top:22px}
+    .hero h1 .accent{color:var(--accent)}
+    .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:32px}
+    .hero-meta{display:flex; flex-wrap:wrap; gap:26px; margin-top:40px; padding-top:28px; border-top:1px solid var(--line)}
+    .hero-meta div{display:flex; flex-direction:column; gap:3px}
+    .hero-meta strong{font-size:1.35rem; font-weight:700; letter-spacing:-.02em}
+    .hero-meta span{font-size:.82rem; color:var(--faint)}
+
+    /* Browser frame */
+    .frame{border:1px solid var(--line-2); border-radius:16px; overflow:hidden; background:var(--card); box-shadow:0 24px 70px rgba(0,0,0,.5)}
+    .frame-bar{height:42px; display:flex; align-items:center; gap:14px; padding:0 16px; background:var(--card-2); border-bottom:1px solid var(--line)}
+    .frame-dots{display:flex; gap:7px}
+    .frame-dots span{width:10px; height:10px; border-radius:50%; background:var(--line-2)}
+    .frame-url{flex:1; height:22px; border-radius:7px; background:rgba(255,255,255,.05); display:flex; align-items:center; padding:0 12px; font-family:var(--mono); font-size:.72rem; color:var(--faint)}
+    .frame-shot{width:100%; aspect-ratio:16/10.5; object-fit:cover; object-position:top center; background:#000}
+    /* Mockup fiel da tela de login do CRM Agro (renderizado em HTML) */
+    .login-mock{display:grid; grid-template-columns:1.05fr 1fr; min-height:430px; background:#fff}
+    .login-visual{position:relative; background:url('assets/crm-agro.jpg') center/cover; display:flex; flex-direction:column; justify-content:flex-end; padding:26px}
+    .login-visual::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,20,10,.12), rgba(6,20,10,.74))}
+    .login-visual .lm-eyebrow, .login-visual strong{position:relative; z-index:1; color:#fff}
+    .lm-eyebrow{font-family:var(--mono); font-size:.64rem; letter-spacing:.18em; text-transform:uppercase; opacity:.92; margin-bottom:9px}
+    .login-visual strong{font-size:1.42rem; font-weight:700; line-height:1.14; letter-spacing:-.02em}
+    .login-form{padding:30px 28px; display:flex; flex-direction:column; gap:11px; background:#fff}
+    .lm-title{font-size:1.35rem; font-weight:700; color:#1a8a54; letter-spacing:-.01em}
+    .lm-sub{font-size:.82rem; color:#5b6b60; margin-bottom:8px}
+    .lm-label{font-size:.72rem; font-weight:600; color:#31413a}
+    .lm-input{height:40px; border:1px solid #d5ddd7; border-radius:9px; display:flex; align-items:center; padding:0 12px; font-size:.82rem; color:#9aa8a0; background:#fff}
+    .lm-input.focus{border-color:#1a8a54; box-shadow:0 0 0 3px rgba(26,138,84,.14); color:#31413a}
+    .lm-btn{height:42px; border-radius:9px; background:#1a8a54; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:.85rem; margin-top:6px}
+    .lm-links{display:flex; justify-content:space-between; margin-top:8px; font-size:.74rem; color:#1a8a54; font-weight:500}
+
+    /* Trust strip */
+    .strip{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px 26px; padding:26px 0}
+    .strip span{font-family:var(--mono); font-size:.74rem; letter-spacing:.12em; text-transform:uppercase; color:var(--faint)}
+    .strip i{width:4px; height:4px; border-radius:50%; background:var(--line-2)}
+
+    /* Section head */
+    .section-head{max-width:640px; margin-bottom:52px}
+    .section-head h2{margin-top:16px}
+    .section-head .lead{margin-top:14px}
+
+    /* Grids */
+    .grid{display:grid; gap:18px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-4{grid-template-columns:repeat(4,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+
+    /* Card */
+    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius-lg); padding:30px; transition:border-color .25s, transform .25s, background .25s}
+    .card:hover{border-color:var(--line-2); transform:translateY(-3px); background:var(--card-2)}
+    .card.featured{border-color:rgba(110,160,255,.4); background:linear-gradient(180deg,rgba(110,160,255,.07),transparent 60%),var(--card)}
+    .ico-chip{width:46px; height:46px; border-radius:12px; display:grid; place-items:center; border:1px solid var(--line-2); background:var(--card-2); color:var(--accent); margin-bottom:20px}
+    .ico-chip svg{width:21px; height:21px; stroke-width:1.7}
+    .card h3{margin-bottom:10px}
+    .card > p{margin-bottom:18px}
+    .list{display:grid; gap:11px}
+    .list span{display:flex; align-items:flex-start; gap:10px; color:#d3d8e2; font-size:.92rem; line-height:1.5}
+    .list span svg{width:16px; height:16px; stroke-width:2; color:var(--accent); flex-shrink:0; margin-top:3px}
+    .card-tag{display:inline-block; margin-top:20px; font-family:var(--mono); font-size:.74rem; letter-spacing:.06em; color:var(--faint)}
+
+    /* Process */
+    .step{position:relative; padding:30px; border:1px solid var(--line); border-radius:var(--radius-lg); background:var(--card)}
+    .step-num{font-family:var(--mono); font-size:.82rem; color:var(--accent); font-weight:600; margin-bottom:18px; letter-spacing:.08em}
+    .step h3{margin-bottom:9px}
+
+    /* Advantages */
+    .adv{padding:26px; border:1px solid var(--line); border-radius:var(--radius-lg); background:var(--card)}
+    .adv .ico-chip{width:40px; height:40px; margin-bottom:16px}
+    .adv strong{display:block; margin-bottom:7px; font-size:1rem; font-weight:600; letter-spacing:-.01em}
+    .adv span{color:var(--muted); font-size:.9rem; line-height:1.6}
+
+    /* Portfolio */
+    .portfolio-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center}
+    .shot{border:1px solid var(--line-2); border-radius:16px; overflow:hidden; background:#000; aspect-ratio:16/10; box-shadow:0 20px 50px rgba(0,0,0,.4)}
+    .shot img{width:100%; height:100%; object-fit:cover; object-position:top center}
+    .stack{display:grid; gap:18px}
+    .stack .shot:nth-child(2){aspect-ratio:16/7}
+    .portfolio-copy{display:grid; gap:22px; align-content:start}
+    .point{padding:18px 20px; border:1px solid var(--line); border-radius:14px; background:var(--card)}
+    .point strong{display:block; margin-bottom:6px; font-weight:600; letter-spacing:-.01em}
+    .point p{font-size:.92rem}
+    .point-list{display:grid; gap:12px}
+
+    /* Systems / showcase */
+    .sys-card{border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; background:var(--card); transition:border-color .25s, transform .25s}
+    .sys-card:hover{border-color:var(--line-2); transform:translateY(-3px)}
+    .sys-card.featured{border-color:rgba(110,160,255,.4)}
+    .sys-media{aspect-ratio:16/9.5; overflow:hidden; border-bottom:1px solid var(--line); background:#000}
+    .sys-media img{width:100%; height:100%; object-fit:cover; object-position:top center}
+    .sys-media.logo{display:grid; place-items:center; background:radial-gradient(circle at 50% 40%,#2a2b57,#141426 72%); border-bottom:1px solid var(--line)}
+    .sys-media.logo img{width:auto; height:auto; max-width:56%; max-height:80%; object-fit:contain; filter:drop-shadow(0 12px 26px rgba(0,0,0,.4))}
+    .sys-body{padding:28px}
+    .sys-tag{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:14px}
+    .sys-body h3{font-size:1.3rem; margin-bottom:11px}
+    .sys-body > p{margin-bottom:20px}
+    .sys-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:22px}
+
+    /* Metrics */
+    .metric{padding:28px; border:1px solid var(--line); border-radius:var(--radius-lg); background:var(--card)}
+    .metric strong{display:block; font-size:1.15rem; font-weight:600; letter-spacing:-.01em; margin-bottom:8px}
+    .metric span{color:var(--muted); font-size:.9rem; line-height:1.55}
+
+    /* Contact */
+    .contact-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:20px; align-items:stretch}
+    .panel{padding:34px; border:1px solid var(--line); border-radius:var(--radius-lg); background:var(--card)}
+    .panel.dark{background:linear-gradient(180deg,var(--card-2),var(--card))}
+    .contact-links{display:grid; gap:12px; margin-top:26px}
+    .contact-link{display:flex; align-items:center; gap:14px; padding:15px 16px; border-radius:13px; border:1px solid var(--line); background:var(--bg-2); transition:border-color .2s, background .2s}
+    .contact-link:hover{border-color:var(--line-2); background:var(--card-2)}
+    .contact-link .ico{width:40px; height:40px; border-radius:11px; display:grid; place-items:center; border:1px solid var(--line-2); color:var(--accent); flex-shrink:0}
+    .contact-link .ico svg{width:19px; height:19px; stroke-width:1.7}
+    .contact-link small{display:block; color:var(--faint); font-size:.76rem; margin-bottom:2px}
+    .contact-link span{font-weight:500; font-size:.95rem}
+    .contact-stack{display:grid; gap:12px; margin-top:24px}
+
+    /* Footer */
+    .footer{padding:48px 0; border-top:1px solid var(--line)}
+    .footer-grid{display:flex; justify-content:space-between; align-items:flex-start; gap:30px; flex-wrap:wrap}
+    .footer-note{color:var(--faint); max-width:440px; margin-top:14px; font-size:.9rem; line-height:1.7}
+    .footer-nav{display:flex; gap:22px; flex-wrap:wrap}
+    .footer-nav a{color:var(--muted); font-size:.9rem; transition:color .2s}
+    .footer-nav a:hover{color:var(--text)}
+    .footer-legal{margin-top:34px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; color:var(--faint); font-size:.82rem}
+
+    /* Floating WhatsApp */
+    .floating-wa{position:fixed; right:22px; bottom:22px; width:54px; height:54px; border-radius:16px; display:grid; place-items:center; background:#1f2937; border:1px solid var(--line-2); color:#4ade80; z-index:70; transition:transform .2s, border-color .2s}
+    .floating-wa:hover{transform:translateY(-2px); border-color:#4ade80}
+    .floating-wa svg{width:24px; height:24px; stroke-width:1.8}
+
+    /* Reveal */
+    .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1; transform:none}
+
+    @media (max-width:1000px){
+      .hero-grid{grid-template-columns:1fr; gap:44px}
+      .portfolio-grid,.contact-grid{grid-template-columns:1fr}
+      .grid-4{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:760px){
+      .section{padding:76px 0}
+      .hero{padding:52px 0 68px}
+      .menu{display:none}
+      .menu-toggle{display:inline-flex}
+      .grid-3,.grid-2{grid-template-columns:1fr}
+      .grid-4{grid-template-columns:1fr 1fr}
+      .hero-meta{gap:20px}
+      .footer-legal{flex-direction:column}
+      .login-mock{grid-template-columns:1fr}
+      .login-visual{min-height:148px}
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar-overlay"></div>
+  <aside class="mobile-sidebar" aria-hidden="true">
+    <div class="sidebar-head">
+      <img src="assets/logo-opervio.png" alt="Opervio Solutions" />
+      <button class="close-sidebar" aria-label="Fechar menu">✕</button>
+    </div>
+    <a href="#servicos">Serviços</a>
+    <a href="#processo">Processo</a>
+    <a href="#portfolio">Portfólio</a>
+    <a href="#sistemas">Sistemas</a>
+    <a href="#vitrine">Vitrine</a>
+    <a href="#contato">Contato</a>
+    <a href="#contato" class="btn btn-primary btn-full" style="margin-top:8px">Solicitar orçamento</a>
+  </aside>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Opervio Solutions">
+        <img src="assets/logo-opervio.png" alt="Opervio Solutions" />
+        <span>Opervio Solutions</span>
+      </a>
+      <nav class="menu">
+        <a href="#servicos">Serviços</a>
+        <a href="#processo">Processo</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#sistemas">Sistemas</a>
+        <a href="#vitrine">Vitrine</a>
+        <a href="#contato" class="btn btn-accent btn-sm" style="color:#fff">Solicitar orçamento</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="label">Estúdio digital · software &amp; design</span>
+          <h1>Sites e sistemas sob medida, com acabamento de <span class="accent">estúdio</span>.</h1>
+          <p class="lead">A Opervio cria landing pages, sites institucionais, plataformas web e automações com design premium, foco em conversão e uma experiência impecável no celular.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contato">Solicitar orçamento
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#portfolio">Ver projetos</a>
+          </div>
+          <div class="hero-meta">
+            <div><strong>Sob medida</strong><span>sites e software feitos do zero</span></div>
+            <div><strong>Mobile-first</strong><span>pensado para o celular</span></div>
+            <div><strong>Em produção</strong><span>projetos reais no ar</span></div>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="frame">
+            <div class="frame-bar">
+              <div class="frame-dots"><span></span><span></span><span></span></div>
+              <div class="frame-url">crm.opervio.com.br/login</div>
+            </div>
+            <div class="login-mock" role="img" aria-label="Tela de login do CRM Agro">
+              <div class="login-visual">
+                <span class="lm-eyebrow">Agro CRM Opervio</span>
+                <strong>Gestão inteligente para o seu agronegócio</strong>
+              </div>
+              <div class="login-form">
+                <div class="lm-title">CRM Agro</div>
+                <div class="lm-sub">Entre com sua conta para continuar</div>
+                <div class="lm-label">E-mail</div>
+                <div class="lm-input">voce@email.com</div>
+                <div class="lm-label">Senha</div>
+                <div class="lm-input focus">••••••••</div>
+                <div class="lm-btn">Entrar</div>
+                <div class="lm-links"><span>Esqueci minha senha</span><span>Criar conta</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section style="padding:0; border-top:1px solid var(--line)">
+      <div class="container">
+        <div class="strip reveal">
+          <span>Landing pages</span><i></i>
+          <span>Sites institucionais</span><i></i>
+          <span>Sistemas web</span><i></i>
+          <span>Automação</span><i></i>
+          <span>Experiência mobile</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="label">Serviços</span>
+          <h2>O que a Opervio entrega</h2>
+          <p class="lead">Projetos com estética forte, estrutura estratégica e foco em fazer o cliente parecer mais profissional e mais valioso no digital.</p>
+        </div>
+        <div class="grid grid-3 reveal">
+          <article class="card">
+            <div class="ico-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            </div>
+            <h3>Landing pages premium</h3>
+            <p>Páginas pensadas para causar impacto imediato, apresentar seu serviço com clareza e converter no celular.</p>
+            <div class="list">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Hero visual e chamadas fortes</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Design responsivo e elegante</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Integração com WhatsApp e redes</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Publicação em domínio próprio</span>
+            </div>
+            <span class="card-tag">OnePage Opervio</span>
+          </article>
+          <article class="card featured">
+            <div class="ico-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></svg>
+            </div>
+            <h3>Presença digital completa</h3>
+            <p>Para quem quer aparecer de forma séria e profissional desde o primeiro contato com o cliente.</p>
+            <div class="list">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Landing page + e-mail profissional</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Configuração de domínio e DNS</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Estrutura visual premium</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Base pronta para expandir</span>
+            </div>
+            <span class="card-tag">Pacote mais procurado</span>
+          </article>
+          <article class="card">
+            <div class="ico-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>
+            </div>
+            <h3>Softwares sob medida</h3>
+            <p>Sistemas web e soluções personalizadas para controle, cadastros, relatórios, banco de dados e automações.</p>
+            <div class="list">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Painéis administrativos</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fluxos de cadastro e consulta</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Relatórios e organização de dados</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Adaptado à operação do cliente</span>
+            </div>
+            <span class="card-tag">Projeto personalizado</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section id="processo" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="label">Processo</span>
+          <h2>Da ideia ao produto no ar</h2>
+          <p class="lead">Um fluxo objetivo e profissional para tirar o projeto do papel com clareza em cada etapa.</p>
+        </div>
+        <div class="grid grid-3 reveal">
+          <div class="step">
+            <div class="step-num">01</div>
+            <h3>Entendimento estratégico</h3>
+            <p>Mapeamos objetivo, público, fluxo ideal e o tipo de solução que faz mais sentido para o cenário real.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <h3>Design + estrutura</h3>
+            <p>Construímos o visual, definimos a arquitetura da página ou sistema e desenhamos a experiência para desktop e mobile.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <h3>Entrega e publicação</h3>
+            <p>Publicamos, testamos, conectamos domínio e deixamos a solução pronta para uso real ou evolução futura.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="label">Diferenciais</span>
+          <h2>Tecnologia prática com imagem de empresa grande</h2>
+          <p class="lead">Não entregamos só um site bonito: criamos uma percepção de qualidade que aumenta confiança, autoridade e valor percebido.</p>
+        </div>
+        <div class="grid grid-4 reveal">
+          <div class="adv">
+            <div class="ico-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6 7 18.2l1.9-5.8L4 8.8h6.1Z"/></svg></div>
+            <strong>Visual de alto nível</strong>
+            <span>Seções bem compostas, acabamento premium e atenção ao detalhe.</span>
+          </div>
+          <div class="adv">
+            <div class="ico-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+            <strong>Experiência mobile-first</strong>
+            <span>Estrutura desenhada para quem acessa pelo celular e decide rápido.</span>
+          </div>
+          <div class="adv">
+            <div class="ico-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".5" fill="currentColor"/></svg></div>
+            <strong>Clareza comercial</strong>
+            <span>Mensagem objetiva, hierarquia forte e CTA bem posicionada.</span>
+          </div>
+          <div class="adv">
+            <div class="ico-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17V7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg></div>
+            <strong>Base para crescer</strong>
+            <span>Páginas e sistemas já pensados para receber novos módulos.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFÓLIO -->
+    <section id="portfolio" class="section">
+      <div class="container portfolio-grid">
+        <div class="stack reveal">
+          <div class="shot"><img src="assets/portfolio-iasmim.png" alt="Projeto Dra. Iasmim Borges" /></div>
+          <div class="shot"><img src="assets/scn-controle.png" alt="Sistema SCN Controle" /></div>
+        </div>
+        <div class="portfolio-copy reveal">
+          <div>
+            <span class="label">Portfólio</span>
+            <h2 style="margin-top:16px">Projetos com aplicação real</h2>
+            <p class="lead">Cases e protótipos com foco em negócios reais, operações internas e presença digital de alto valor percebido.</p>
+          </div>
+          <div class="point-list">
+            <div class="point"><strong>Dra. Iasmim Borges</strong><p>Landing page profissional publicada, com identidade elegante e apresentação refinada para a área da saúde.</p></div>
+            <div class="point"><strong>SCN Controle</strong><p>Aplicação web real para controle de vagas e veículos em condomínio, com tela de acesso e base operacional.</p></div>
+          </div>
+          <div class="hero-actions" style="margin-top:4px">
+            <a class="btn btn-ghost" href="https://iasmimfisio.com.br" target="_blank" rel="noopener noreferrer">Ver case publicado
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SISTEMAS -->
+    <section id="sistemas" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="label">Sistemas &amp; plataformas</span>
+          <h2>Software web real, em produção</h2>
+          <p class="lead">Além de sites, desenvolvemos sistemas completos que rodam no dia a dia dos clientes — com login, banco de dados, dashboards e acesso pelo celular.</p>
+        </div>
+        <div class="grid grid-2 reveal">
+          <article class="sys-card featured">
+            <div class="sys-media"><img src="assets/crm-agro.jpg" alt="CRM Agro — plataforma de gestão para o agronegócio" /></div>
+            <div class="sys-body">
+              <span class="sys-tag">Plataforma própria Opervio</span>
+              <h3>CRM Agro — gestão para o agronegócio</h3>
+              <p>Sistema completo para representantes e vendedores que trabalham com comissão: vendas, comissões (previstas, parciais e recebidas), despesas, metas, apuração de impostos e lucro líquido — com dashboard financeiro e relatórios.</p>
+              <div class="list">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Vendas, comissões e despesas em um só lugar</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Dashboard com metas, gráficos e alertas</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Relatórios e exportação em PDF e CSV</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>100% responsivo — lance dados pelo celular no campo</span>
+              </div>
+              <div class="sys-actions">
+                <a class="btn btn-accent" href="https://crm.opervio.com.br" target="_blank" rel="noopener noreferrer">Acessar o CRM Agro
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                </a>
+                <a class="btn btn-ghost" href="#contato">Quero um sistema assim</a>
+              </div>
+            </div>
+          </article>
+          <article class="sys-card">
+            <div class="sys-media logo"><img src="assets/fenix-logo.png" alt="Associação Fênix Karatê-Dô" /></div>
+            <div class="sys-body">
+              <span class="sys-tag">Projeto em desenvolvimento</span>
+              <h3>Associação Fênix Karatê-Dô</h3>
+              <p>Site institucional da associação de karatê, com um sistema de gestão de alunos em desenvolvimento — matrículas, turmas, graduações e acompanhamento de mensalidades, pensado para a rotina da equipe.</p>
+              <div class="sys-actions">
+                <a class="btn btn-primary" href="https://fenixassociacao.com.br" target="_blank" rel="noopener noreferrer">Ver site da Fênix
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                </a>
+                <a class="btn btn-ghost" href="#contato">Quero um projeto assim</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VITRINE -->
+    <section id="vitrine" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="label">Vitrine visual</span>
+          <h2>Conceitos premium para apresentação comercial</h2>
+          <p class="lead">Artes que demonstram como modelamos páginas de diferentes nichos com linguagem visual própria e foco em conversão.</p>
+        </div>
+        <div class="grid grid-2 reveal">
+          <article class="sys-card">
+            <div class="sys-media"><img src="assets/demo-odonto.png" alt="Demo landing page odontológica" /></div>
+            <div class="sys-body">
+              <span class="sys-tag">Conceito · saúde</span>
+              <h3>Clínica odontológica</h3>
+              <p>Landing page clara, elegante e comercial para a área da saúde, com hero visual forte, destaques de serviços e CTA bem distribuída.</p>
+            </div>
+          </article>
+          <article class="sys-card">
+            <div class="sys-media"><img src="assets/demo-personal.png" alt="Demo landing page personal trainer" /></div>
+            <div class="sys-body">
+              <span class="sys-tag">Conceito · performance</span>
+              <h3>Personal trainer premium</h3>
+              <p>Conceito com linguagem intensa, contraste forte e estética de performance para nichos que precisam transmitir energia e resultado.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÉTRICAS -->
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-4 reveal">
+          <div class="metric"><strong>Mobile-first</strong><span>prioridade total na experiência pelo celular</span></div>
+          <div class="metric"><strong>Acabamento</strong><span>profundidade, detalhe e padrão premium</span></div>
+          <div class="metric"><strong>Estratégia</strong><span>seções desenhadas para gerar confiança</span></div>
+          <div class="metric"><strong>Evolução</strong><span>estrutura preparada para crescer com a marca</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="section">
+      <div class="container contact-grid">
+        <div class="panel reveal">
+          <span class="label">Contato</span>
+          <h2 style="margin-top:16px">Vamos elevar a presença digital da sua marca?</h2>
+          <p class="lead">Fale com a gente para criar uma landing page, desenvolver um sistema web ou estruturar uma solução digital sob medida.</p>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:atendimento@opervio.com.br">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+              <span><small>E-mail</small>atendimento@opervio.com.br</span>
+            </a>
+            <a class="contact-link" href="https://wa.me/5511987424682" target="_blank" rel="noopener noreferrer">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 20l1-5.5a8.4 8.4 0 0 1-1-4 8.5 8.5 0 0 1 17 0Z"/></svg></span>
+              <span><small>WhatsApp</small>(11) 98742-4682</span>
+            </a>
+            <a class="contact-link" href="https://www.instagram.com/opervio_solutions/" target="_blank" rel="noopener noreferrer">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></span>
+              <span><small>Instagram</small>@opervio_solutions</span>
+            </a>
+          </div>
+        </div>
+        <div class="panel dark reveal">
+          <span class="label">Chamada rápida</span>
+          <h3 style="margin-top:16px; font-size:1.3rem">Solicite um orçamento</h3>
+          <p style="margin-top:10px">Atendimento inicial rápido para entender sua necessidade e propor a melhor solução.</p>
+          <div class="contact-stack">
+            <a class="btn btn-accent btn-full" href="https://wa.me/5511987424682?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Opervio%20e%20quero%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+            <a class="btn btn-ghost btn-full" href="mailto:atendimento@opervio.com.br">Enviar e-mail</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#home"><img src="assets/logo-opervio.png" alt="Opervio Solutions" /><span>Opervio Solutions</span></a>
+          <p class="footer-note">Soluções digitais modernas para profissionais e empresas que querem transmitir mais autoridade, organização e valor no digital.</p>
+        </div>
+        <nav class="footer-nav">
+          <a href="#servicos">Serviços</a>
+          <a href="#processo">Processo</a>
+          <a href="#portfolio">Portfólio</a>
+          <a href="#sistemas">Sistemas</a>
+          <a href="#vitrine">Vitrine</a>
+          <a href="#contato">Contato</a>
+        </nav>
+      </div>
+      <div class="footer-legal">
+        <span>© 2026 Opervio Solutions. Todos os direitos reservados.</span>
+        <span>atendimento@opervio.com.br · (11) 98742-4682</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="floating-wa" href="https://wa.me/5511987424682?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Opervio%20e%20quero%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 20l1-5.5a8.4 8.4 0 0 1-1-4 8.5 8.5 0 0 1 17 0Z"/></svg>
+  </a>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting){ entry.target.classList.add('in'); observer.unobserve(entry.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const menuBtn = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.mobile-sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    const closeBtn = document.querySelector('.close-sidebar');
+    const open = () => { sidebar.classList.add('open'); overlay.classList.add('open'); sidebar.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
+    const close = () => { sidebar.classList.remove('open'); overlay.classList.remove('open'); sidebar.setAttribute('aria-hidden','true'); document.body.style.overflow=''; };
+    if (menuBtn) menuBtn.addEventListener('click', open);
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    if (overlay) overlay.addEventListener('click', close);
+    document.querySelectorAll('.mobile-sidebar a').forEach(a => a.addEventListener('click', close));
+    window.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  </script>
+</body>
+</html>
